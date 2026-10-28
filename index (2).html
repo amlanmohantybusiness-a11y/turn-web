@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><title>【試作】TURN トラックストップ｜Design prototype</title><meta name="description" content="ハンドルカバー・カーテン・シートカバーを、1947年創業の姫路の自社工房で縫製。既製品もオーダーメイドも承ります。"><meta name="theme-color" content="#0E0F10"><meta name="color-scheme" content="dark"><meta property="og:title" content="TURN トラックストップ"><meta property="og:description" content="姫路で1947年から、トラックのキャビン用品を作り続けています。"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230E0F10'/%3E%3Ctext x='50' y='72' font-size='64' font-weight='900' text-anchor='middle' fill='%23F2B705' font-family='Arial'%3ET%3C/text%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--s1:#F4F4F5;--s2:#E7E7E9;--line:#D8D8DB;--mid:#76777D;--ink:#111214;--ink2:#2A2B2E;--acc:#F2B705;--r:6px;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E0F10;--s1:#17181A;--s2:#222326;--line:#33353A;--mid:#9A9BA1;--ink:#F3F3F4;--ink2:#D5D5D8}}
+:root[data-theme="dark"]{--bg:#0E0F10;--s1:#17181A;--s2:#222326;--line:#33353A;--mid:#9A9BA1;--ink:#F3F3F4;--ink2:#D5D5D8}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.7 Inter,"Noto Sans JP","Hiragino Sans","Yu Gothic",system-ui,sans-serif}
+h1,h2,h3{margin:0;line-height:1.15;letter-spacing:-.02em}h1{font-size:44px;font-weight:800}h2{font-size:28px;font-weight:700}h3{font-size:17px;font-weight:600}
+p{margin:0 0 12px}a{color:inherit}.mut{color:var(--mid)}.sm{font-size:13px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+header{background:#0E0F10;color:#fff;position:sticky;top:0;z-index:20}
+.util{background:#000;font-size:12px;color:#B8B9BE}.util .wrap{display:flex;justify-content:space-between;padding:6px 20px;gap:12px;flex-wrap:wrap}
+.bar{display:flex;align-items:center;gap:12px;padding:14px 20px;max-width:1160px;margin:0 auto}
+.logo{font-weight:800;font-size:22px;letter-spacing:.04em;cursor:pointer}.logo b{color:var(--acc)}
+nav{display:flex;gap:2px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}nav a{padding:8px 12px;border-radius:var(--r);cursor:pointer;text-decoration:none;font-size:14px;color:#D5D5D8;white-space:nowrap}nav a:hover,nav a.on{background:#222326;color:#fff}
+.srch{background:#1B1C1E;border:1px solid #33353A;color:#fff;border-radius:var(--r);padding:8px 12px;width:130px;min-width:0;font:inherit}
+.ib{background:none;border:1px solid #33353A;color:#fff;border-radius:var(--r);padding:8px 12px;cursor:pointer;font:inherit}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--ink);background:none;color:var(--ink);border-radius:var(--r);padding:12px 20px;font:600 14px Inter,sans-serif;cursor:pointer;text-decoration:none}
+.btn.p{background:var(--acc);border-color:var(--acc);color:#111214}.btn.d{background:var(--ink);color:var(--bg)}.btn.w{width:100%}.btn:hover{filter:brightness(.92)}
+.lnk{background:none;border:0;padding:0;color:var(--mid);text-decoration:underline;cursor:pointer;font:inherit;font-size:13px}
+.hero{background:#0E0F10;color:#fff;padding:64px 0 96px}.hero p{color:#B8B9BE;max-width:520px;font-size:17px;margin:16px 0 24px}
+.sel{background:var(--bg);color:var(--ink);border-radius:10px;padding:18px;margin-top:-56px;position:relative;box-shadow:0 8px 30px rgba(0,0,0,.18);display:grid;grid-template-columns:1fr 1fr auto;gap:12px;align-items:end}
+label{font-size:12px;font-weight:600;display:block;margin-bottom:4px}
+input,select,textarea{width:100%;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:var(--r);padding:11px 12px;font:inherit}
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:28px 0;border-bottom:1px solid var(--line)}.trust div{font-size:13px}.trust b{display:block;font-size:14px}
+.sec{padding:44px 0}.hd{display:flex;justify-content:space-between;align-items:end;margin-bottom:20px;gap:12px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:1fr 1fr}
+.card{border:1px solid var(--line);border-radius:10px;overflow:hidden;cursor:pointer;background:var(--bg);position:relative}.card:hover{border-color:var(--ink)}
+.card .t{padding:12px 56px 14px 14px}.card .art{background:var(--s1)}
+.card .q{position:absolute;right:12px;bottom:12px;background:var(--ink);color:var(--bg);border:0;border-radius:var(--r);width:36px;height:36px;font-size:20px;cursor:pointer}
+.cat{padding:22px;text-align:center;font-weight:600}.cat svg{width:100%;height:auto}
+svg .i{fill:var(--ink)}svg .m{fill:var(--mid)}svg .l{fill:var(--s2)}svg .s{fill:none;stroke:var(--ink);stroke-width:12}svg .a{fill:var(--acc)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}.chip{border:1px solid var(--line);border-radius:99px;padding:6px 14px;cursor:pointer;font-size:13px;background:none;color:var(--ink);font-family:inherit}.chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.split{display:grid;grid-template-columns:1.1fr 1fr;gap:40px}.sw{display:flex;gap:8px;margin:6px 0 16px}.sw button{border:1px solid var(--line);background:none;color:var(--ink);border-radius:var(--r);padding:8px 14px;cursor:pointer;font:inherit;font-size:13px}.sw button.on{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.row{display:flex;gap:12px;align-items:center}.qty{display:inline-flex;border:1px solid var(--line);border-radius:var(--r)}.qty button{background:none;border:0;color:var(--ink);width:36px;height:40px;font-size:18px;cursor:pointer}.qty span{width:30px;text-align:center;line-height:40px}
+.panel{border:1px solid var(--line);border-radius:10px;padding:20px;background:var(--s1)}
+.line{display:grid;grid-template-columns:80px 1fr auto;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);align-items:center}
+.bagl{display:grid;grid-template-columns:1.6fr 1fr;gap:32px;align-items:start}.sum div{display:flex;justify-content:space-between;margin-bottom:8px}
+.prog{height:6px;background:var(--s2);border-radius:9px;overflow:hidden;margin:6px 0 14px}.prog i{display:block;height:100%;background:var(--acc)}
+.sw2{display:flex;gap:10px;flex-wrap:wrap}.sw2 div{width:92px;font-size:11px}.sw2 i{display:block;height:54px;border-radius:var(--r);border:1px solid var(--line);margin-bottom:4px}
+.why{border-left:3px solid var(--acc);padding:4px 0 4px 16px;margin-bottom:22px}.why b{display:block}
+footer{background:#0E0F10;color:#B8B9BE;padding:44px 0 28px;margin-top:40px;font-size:13px}footer .grid{grid-template-columns:2fr 1fr 1fr 1fr}footer a{display:block;padding:3px 0;cursor:pointer;text-decoration:none}footer a:hover{color:#fff}
+:root{--r:3px}h1,h2{text-transform:uppercase;font-weight:900;font-style:italic;letter-spacing:-.01em}.btn{border-width:2px;text-transform:uppercase;letter-spacing:.05em;font-weight:800}.btn.p{box-shadow:4px 4px 0 var(--ink)}.card{border-width:2px;border-radius:4px}.panel{border-width:2px;border-radius:4px}
+.dev{display:none!important}body.dv .dev{display:revert!important}.haz{height:12px;background:repeating-linear-gradient(-45deg,var(--acc) 0 14px,#111214 14px 28px)}.chrome{background:linear-gradient(180deg,#fff,#9a9ca2 48%,#e9eaec 52%,#6d6f75);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card .h{position:absolute;right:10px;top:10px;background:var(--bg);border:2px solid var(--ink);width:34px;height:34px;cursor:pointer;color:var(--ink);font-size:16px;border-radius:50%}
+.vid{display:flex;flex-direction:column;align-items:center;justify-content:center;aspect-ratio:16/9;background:linear-gradient(135deg,#1b1c1e,#0e0f10);color:#fff;border:2px solid var(--ink);cursor:pointer;gap:8px}.play{width:56px;height:56px;border-radius:50%;background:var(--acc);color:#111;display:grid;place-items:center;font-size:22px}.cfgl{grid-template-columns:1.5fr 1fr}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:var(--r);font-size:14px;opacity:0;pointer-events:none;transition:.2s;z-index:50}#toast.on{opacity:1}
+@media(max-width:820px){h1{font-size:32px}.grid,.g3,footer .grid{grid-template-columns:1fr 1fr}.sel,.split,.bagl,.g2,.trust{grid-template-columns:1fr}.srch{display:none}.bar{flex-wrap:wrap;gap:10px}nav{order:3;flex-basis:100%}}
+#intro{position:fixed;inset:0;z-index:100;background:#0a0b0d;color:#fff;transition:opacity .7s}#intro.out{opacity:0;pointer-events:none}#intro canvas{position:absolute;inset:0;width:100%;height:100%;display:block}#intro .vg{position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,rgba(0,0,0,.8),transparent 50%),radial-gradient(transparent 55%,rgba(0,0,0,.55))}#intro .lg{position:absolute;left:24px;top:calc(22px + env(safe-area-inset-top,0px))}#intro .skip{position:absolute;right:24px;top:calc(22px + env(safe-area-inset-top,0px));background:none;border:1px solid #55575C;color:#fff;border-radius:var(--r);padding:8px 14px;font:inherit;cursor:pointer}#intro .cp{position:absolute;left:24px;right:24px;bottom:calc(32px + env(safe-area-inset-bottom,0px));max-width:560px;animation:up 1.2s .6s both}#intro .cp p{color:#B8B9BE;font-size:16px;margin:12px 0 20px}@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}@media(max-width:820px){#intro .cp h1{font-size:30px}}
+html[lang=ja] h1,html[lang=ja] h2,html[lang=ja] h3,html[lang=ja] .chrome{font-style:normal!important;letter-spacing:.02em!important;line-height:1.35!important}html[lang=ja] h1{font-size:clamp(30px,5vw,48px)!important}html[lang=ja] .btn,html[lang=ja] .cfb button,html[lang=ja] .tg{letter-spacing:.04em}html[lang=ja] .sm{line-height:1.6}
+/* ===== CINEMATIC LAYER (added) ===== */
+:root{--disp:"Barlow Condensed","Noto Sans JP",Inter,system-ui,sans-serif;--ease:cubic-bezier(.2,.7,.2,1);color-scheme:dark}
+::selection{background:var(--acc);color:#111}
+html{background:#08090b}
+body{background:radial-gradient(1100px 520px at 50% -8%,#15181e 0,transparent 62%),#08090b}
+h1,h2{font-family:var(--disp)}
+html[lang=ja] h1,html[lang=ja] h2{font-family:"Noto Sans JP",var(--disp);font-weight:900}
+
+/* header */
+header{background:rgba(8,9,11,.95);border-bottom:1px solid #1d2026}
+.util{letter-spacing:.04em}
+.logo{font-family:var(--disp);font-weight:800;font-size:26px;letter-spacing:.08em}
+.logo b{text-shadow:0 0 16px rgba(242,183,5,.75)}
+nav a{position:relative;transition:color .25s}
+nav a:hover,nav a.on{background:none}
+nav a::after{content:"";position:absolute;left:12px;right:12px;bottom:2px;height:2px;background:var(--acc);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+nav a:hover::after,nav a.on::after{transform:scaleX(1)}
+.ib{transition:border-color .25s,background .25s}.ib:hover{border-color:var(--acc)}
+.haz{height:6px}
+
+/* buttons */
+.btn{transition:transform .25s var(--ease),box-shadow .25s,border-color .25s,background .25s}
+.btn.p{border-color:var(--acc);box-shadow:0 10px 30px -10px rgba(242,183,5,.6)}
+.btn.p:hover{transform:translateY(-2px);box-shadow:0 16px 36px -10px rgba(242,183,5,.8);filter:none}
+.btn:not(.p):hover{border-color:var(--acc);filter:none}
+.btn:active{transform:translateY(0) scale(.98)}
+.sel .btn.d{background:var(--acc);border-color:var(--acc);color:#111}
+
+/* hero */
+.hero.cine{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:flex-end;min-height:clamp(540px,calc(100vh - 130px),880px);padding:0 0 clamp(96px,14vh,150px);background:#08090b}
+.hero.cine::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(6,7,9,.92) 0,rgba(6,7,9,.6) 36%,rgba(6,7,9,0) 68%),linear-gradient(0deg,#08090b 0,rgba(8,9,11,0) 38%)}
+.hero.cine::after{content:"";position:absolute;inset:-120px;z-index:4;pointer-events:none;background:var(--grain,none);opacity:.07;animation:grain .8s steps(1) infinite}
+@keyframes grain{0%{transform:translate(0,0)}14%{transform:translate(-40px,26px)}28%{transform:translate(30px,-34px)}42%{transform:translate(-22px,-18px)}57%{transform:translate(44px,30px)}71%{transform:translate(-36px,12px)}85%{transform:translate(18px,-40px)}}
+html.lite .hero.cine::after{animation:none}
+.hero.cine .scene{position:absolute;inset:-3%;z-index:-3;transform:scale(1.05);transform-origin:62% 40%;will-change:transform}
+.hero.cine .scene svg{width:100%;height:100%;display:block}
+.hero.cine .hc{position:relative;z-index:3;width:100%}
+.hero.cine .hc h1{font-weight:900;filter:drop-shadow(0 8px 28px rgba(0,0,0,.7))}
+html[lang=ja] .hero.cine h1{font-size:clamp(34px,6.2vw,78px)!important;line-height:1.18!important}
+.hero.cine .hc p{color:#c3c5cb;text-shadow:0 2px 14px #000}
+.hero.cine .hc .sm{letter-spacing:.22em!important}
+.lb{position:absolute;left:0;right:0;height:50%;background:#000;z-index:5;pointer-events:none;transform:scaleY(.13)}
+.lb.t{top:0;transform-origin:top}.lb.b{bottom:0;transform-origin:bottom}
+.dust{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.dust i{position:absolute;left:var(--x);bottom:-10px;width:3px;height:3px;border-radius:50%;background:#ffe4a6;opacity:0;animation:dust var(--d) linear var(--dl) infinite}
+.dust i:nth-child(3n){width:2px;height:2px}.dust i:nth-child(4n){width:4px;height:4px;background:#ffd27a}
+@keyframes dust{0%{transform:translate3d(0,0,0);opacity:0}12%{opacity:.7}85%{opacity:.45}100%{transform:translate3d(var(--dx),-85vh,0);opacity:0}}
+html.lite .dust{display:none}
+/* hero + page motion only runs when a page is freshly shown (#app.pg) */
+#app.pg>*{animation:pgf .5s ease backwards}
+@keyframes pgf{from{opacity:0}to{opacity:1}}
+.pg .hero.cine .scene{animation:push 26s var(--ease) both}
+@keyframes push{from{transform:scale(1)}to{transform:scale(1.07)}}
+.pg .hero.cine .lb{animation:lbo 1.7s cubic-bezier(.77,0,.18,1) .15s both}
+@keyframes lbo{from{transform:scaleY(1)}to{transform:scaleY(.13)}}
+.pg .hero.cine .hc>*{animation:rise 1.1s var(--ease) both}
+.pg .hero.cine .hc>:nth-child(1){animation-delay:.9s}
+.pg .hero.cine .hc>:nth-child(2){animation-delay:1.05s}
+.pg .hero.cine .hc>:nth-child(3){animation-delay:1.2s}
+.pg .hero.cine .hc>:nth-child(4){animation-delay:1.35s}
+.pg .hero.cine .hc>:nth-child(5){animation-delay:1.45s}
+@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+html:not(.rolled) .hero.cine .lb,html:not(.rolled) .hero.cine .hc>*,html:not(.rolled) .hero.cine .scene{animation-play-state:paused}
+
+/* panels, cards, sections */
+.sel{background:linear-gradient(180deg,#15171c,#0d0f12);border:1px solid #2a2e36;color:var(--ink);box-shadow:0 30px 70px -24px #000,0 0 0 1px rgba(255,255,255,.03) inset}
+.trust{border-bottom:1px solid #1d2026}
+.trust div{color:var(--mid)}
+.trust b{color:var(--ink);font-family:var(--disp);letter-spacing:.04em;font-size:16px}
+.hd h2{position:relative;padding-left:16px}
+.hd h2::before{content:"";position:absolute;left:0;top:.14em;bottom:.14em;width:4px;background:var(--acc);box-shadow:0 0 14px var(--acc)}
+.card{background:linear-gradient(180deg,#121419,#0c0d10);border:1px solid #23262d;transition:transform .35s var(--ease),border-color .35s,box-shadow .35s}
+.card:hover{transform:translateY(-4px);border-color:var(--acc);box-shadow:0 20px 44px -20px rgba(242,183,5,.4)}
+.card .art{background:radial-gradient(circle at 50% 40%,#1e2128,#0e1013)}
+.panel{background:linear-gradient(180deg,#14161a,#0e1013);border:1px solid #23262d}
+.why{border-left-color:var(--acc)}
+.chip{transition:background .2s,border-color .2s}.chip:hover{border-color:var(--acc)}
+.chip.on{background:var(--acc);color:#111;border-color:var(--acc)}
+.vid{border:1px solid #23262d;background:radial-gradient(circle at 30% 20%,#23262d,#0c0d10)}
+.play{box-shadow:0 0 0 8px rgba(242,183,5,.15),0 0 30px rgba(242,183,5,.5)}
+#sty>div{border:1px solid #23262d!important}
+#sty>div::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 60%,transparent 40%,rgba(0,0,0,.65))}
+footer{background:linear-gradient(180deg,#08090b,#050506);border-top:1px solid #1d2026}
+#toast{background:#14161a;color:var(--ink);border:1px solid var(--acc);box-shadow:0 12px 30px -10px #000}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+/* intro: letterbox */
+#intro::before,#intro::after{content:"";position:absolute;left:0;right:0;height:8vh;background:#000;z-index:3;pointer-events:none}
+#intro::before{top:0}#intro::after{bottom:0}
+#intro .vg{z-index:2}
+#intro .lg,#intro .skip{z-index:4;top:calc(2.4vh + env(safe-area-inset-top,0px))}
+#intro .cp{z-index:4;bottom:calc(8vh + 28px + env(safe-area-inset-bottom,0px))}
+#intro .cp h1{font-weight:900;letter-spacing:.01em}
+
+/* cab builder */
+.cfv{border:1px solid #23262d!important;background:#07080a!important;box-shadow:0 40px 80px -40px #000}
+.cfv::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:var(--grain,none);opacity:.06}
+.cfv::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,transparent 48%,rgba(0,0,0,.7))}
+.cfb,.cfh{z-index:2}
+.cf2d{position:absolute;inset:0;z-index:0;touch-action:pan-y;cursor:grab;transform-origin:50% 55%;will-change:transform;animation:cfpush 18s ease-in-out infinite alternate}
+@keyframes cfpush{from{transform:scale(1)}to{transform:scale(1.035)}}
+.cf2b{position:absolute;left:12px;top:12px;z-index:2;background:rgba(20,21,23,.88);color:#cfd0d4;border:1px solid #3a3c41;border-radius:999px;padding:6px 12px;font:600 11px/1 Inter,"Noto Sans JP",system-ui,sans-serif;letter-spacing:.04em;pointer-events:none}
+#app .ci,#app .cfs{background:linear-gradient(180deg,#14161a,#0e1013);border-color:#23262d}
+#app .ci.on{border-color:var(--acc)}
+#app .tg.on{background:var(--acc);color:#111;border-color:var(--acc)}
+#app .cl button.on,#app .vr button.on{background:var(--acc);color:#111;border-color:var(--acc)}
+.wrap.sec{padding-left:20px;padding-right:20px}
+
+@media(max-width:820px){.hero.cine{min-height:660px}.logo{font-size:24px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.lb{transform:scaleY(.13)}.hero.cine .scene{transform:scale(1.05)}}
+
+</style></head><body><div id="protobar" style="background:#F2B705;color:#111;font:700 12px/1.5 Inter,'Noto Sans JP',sans-serif;text-align:center;padding:6px 12px;position:relative;z-index:30">PROTOTYPE / 試作デザイン ｜ TURN公式サイトではありません。写真・レビュー・保証・送料はサンプルで、注文やフォームは実際には送信されません。 Not the official TURN website.</div>
+<header><div class="util"><div class="wrap"><span>Free shipping over ¥10,000 · Made in Himeji since 1947</span><span><a data-go="stores" style="cursor:pointer">Stores</a> · <a data-go="info:Help &amp; FAQ" style="cursor:pointer">Help</a></span></div></div>
+<div class="bar"><div class="logo" data-go="home">TURN<b>.</b></div>
+<nav id="nav"></nav>
+<input class="srch" id="q" placeholder="Search parts…" aria-label="Search">
+<button class="ib" data-go="info:Sign in">Account</button><button class="ib" id="lang" data-act="lang">日本語</button><button class="ib" id="wishb" data-go="wish"></button><button class="ib" id="bagb" data-go="bag"></button></div><div class="haz"></div></header>
+<main id="app"></main>
+<footer><div class="wrap"><div class="grid"><div><div class="logo" style="color:#fff" data-go="home">TURN<b>.</b></div><p style="margin-top:10px">Truck cabin goods, cut and sewn in our own Himeji workshop. Light trucks to heavy haulers.</p>
+<form data-form="news" class="row"><input placeholder="Email for new drops" required style="background:#1B1C1E;border-color:#33353A;color:#fff"><button class="btn p">Join</button></form></div>
+<div><b style="color:#fff">Shop</b><a data-go="shop:steering">Steering covers</a><a data-go="shop:curtain">Curtains</a><a data-go="shop:seat">Seat covers</a><a data-go="shop:mat">Floor mats</a></div>
+<div><b style="color:#fff">Company</b><a data-go="story">Our story</a><a data-go="custom">Custom order</a><a data-go="stores">Stores</a><a data-go="info:Contact">Contact</a></div>
+<div><b style="color:#fff">Support</b><a data-go="info:Shipping">Shipping</a><a data-go="info:Returns">Returns</a><a data-go="info:Privacy policy">Privacy</a><a data-go="design" class="dev">Design system</a><a data-go="ux" class="dev">UX notes</a></div></div>
+<p style="margin-top:28px">© TURN Co., Ltd. <button class="lnk dev" data-act="edit" style="color:#B8B9BE">Toggle edit mode</button></p></div></footer>
+<div id="toast"></div>
+<div id="intro"><canvas></canvas><div class="vg"></div><div class="lg logo">TURN<b>.</b></div><button class="skip" data-leave="x">Skip ›</button><div class="cp"><div class="sm" style="color:var(--acc);font-weight:600;letter-spacing:.1em">SINCE 1947 · HIMEJI, JAPAN</div><h1 style="margin-top:8px">Built for the long road.</h1><p>Cab goods sewn by our own craftspeople, for every driver who calls the cab home.</p><button class="btn p" data-leave="x">Enter the site</button> <button class="btn" style="color:#fff;border-color:#55575C" data-leave="shop">Shop parts now</button></div></div>
+<script>
+/* ===== cinematic helpers (added) ===== */
+function glOK(){if(glOK.v!==undefined)return glOK.v;let ok=false;try{const c=document.createElement('canvas'),o={failIfMajorPerformanceCaveat:true},g=c.getContext('webgl',o)||c.getContext('experimental-webgl',o);if(g){ok=true;const x=g.getExtension('WEBGL_lose_context');x&&x.loseContext()}}catch(e){ok=false}return glOK.v=ok}
+window.__lite=(function(){try{return !!(matchMedia('(prefers-reduced-motion: reduce)').matches||(navigator.hardwareConcurrency||8)<=2||(navigator.deviceMemory||8)<=2||!glOK())}catch(e){return false}})();
+document.documentElement.classList.toggle('lite',window.__lite);
+(function(){try{const c=document.createElement('canvas');c.width=c.height=128;const g=c.getContext('2d'),im=g.createImageData(128,128);for(let i=0;i<im.data.length;i+=4){const v=Math.random()*255|0;im.data[i]=im.data[i+1]=im.data[i+2]=v;im.data[i+3]=255}g.putImageData(im,0,0);document.documentElement.style.setProperty('--grain','url('+c.toDataURL('image/png')+')')}catch(e){}})();
+const HERO_SVG=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMin slice"><defs><linearGradient id="hw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#090a0d"/><stop offset=".55" stop-color="#171a1f"/><stop offset="1" stop-color="#101216"/></linearGradient><linearGradient id="hf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#15171b"/><stop offset=".22" stop-color="#1d2025"/><stop offset="1" stop-color="#060708"/></linearGradient><linearGradient id="hc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe2a8" stop-opacity=".42"/><stop offset="1" stop-color="#ffe2a8" stop-opacity="0"/></linearGradient><radialGradient id="hn" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#F2B705" stop-opacity=".55"/><stop offset=".45" stop-color="#F2B705" stop-opacity=".16"/><stop offset="1" stop-color="#F2B705" stop-opacity="0"/></radialGradient><radialGradient id="hp" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffd98a" stop-opacity=".4"/><stop offset="1" stop-color="#ffd98a" stop-opacity="0"/></radialGradient><radialGradient id="hr" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ff3b4a" stop-opacity=".5"/><stop offset="1" stop-color="#ff3b4a" stop-opacity="0"/></radialGradient><linearGradient id="hs" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#43464e"/><stop offset="1" stop-color="#1b1d21"/></linearGradient><linearGradient id="hroll" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".45"/></linearGradient><pattern id="hpeg" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="3" fill="#040405"/><circle cx="20" cy="21.4" r="3" fill="none" stroke="#fff" stroke-opacity=".07"/></pattern></defs><rect width="1600" height="650" fill="url(#hw)"/><rect width="1600" height="64" fill="#050607"/><rect y="28" width="1600" height="10" fill="#0d0e11"/><path d="M0 64H1600" stroke="#23262c" stroke-width="3"/><!-- pegboard wall --><rect x="90" y="170" width="700" height="440" rx="6" fill="#1b1d22" stroke="#2c2f36" stroke-width="3"/><rect x="90" y="170" width="700" height="440" rx="6" fill="url(#hpeg)"/><g stroke="#8a8c92" stroke-width="4" stroke-linecap="round"><path d="M220 214v-14M400 214v-14M580 214v-14M720 214v-14M170 392v-12M290 392v-12"/></g><g fill="none"><circle cx="220" cy="290" r="62" stroke="#F2B705" stroke-width="18"/><circle cx="220" cy="290" r="62" stroke="#fff" stroke-opacity=".4" stroke-width="1.6" stroke-dasharray="6 5"/><circle cx="400" cy="290" r="62" stroke="#2b2c31" stroke-width="18"/><circle cx="400" cy="290" r="62" stroke="#fff" stroke-opacity=".3" stroke-width="1.6" stroke-dasharray="6 5"/><circle cx="580" cy="290" r="62" stroke="#c4161c" stroke-width="18"/><circle cx="580" cy="290" r="62" stroke="#fff" stroke-opacity=".35" stroke-width="1.6" stroke-dasharray="6 5"/><circle cx="720" cy="290" r="48" stroke="#8a8b90" stroke-width="14"/></g><g><rect x="140" y="392" width="200" height="38" rx="19" fill="#c79a2a"/><rect x="140" y="392" width="200" height="38" rx="19" fill="url(#hroll)"/><rect x="372" y="440" width="74" height="92" rx="8" fill="#23262c" stroke="#3a3d44" stroke-width="2"/><rect x="384" y="454" width="50" height="10" rx="3" fill="#F2B705"/><rect x="470" y="440" width="74" height="92" rx="8" fill="#23262c" stroke="#3a3d44" stroke-width="2"/><rect x="482" y="454" width="50" height="10" rx="3" fill="#F2B705" opacity=".6"/><path d="M600 440h104q18 0 18 18v68q0 18-18 18H600q-18 0-18-18v-68q0-18 18-18z" fill="#1a1a1c" stroke="#3a3d44" stroke-width="2"/><path d="M590 450l120 90M630 442l90 76M590 500l60 40" stroke="#fff" stroke-opacity=".1" stroke-width="2"/><rect x="150" y="470" width="190" height="60" rx="8" fill="#2d2f35" stroke="#3a3d44" stroke-width="2"/><path d="M150 490h190M150 510h190" stroke="#000" stroke-opacity=".35" stroke-width="3"/><rect x="268" y="560" width="36" height="20" rx="2" fill="#f4f1ea" opacity=".85"/><rect x="420" y="568" width="36" height="20" rx="2" fill="#f4f1ea" opacity=".85"/></g><!-- shelf unit --><g><rect x="940" y="250" width="14" height="390" fill="#2a2d33"/><rect x="1470" y="250" width="14" height="390" fill="#2a2d33"/><rect x="940" y="360" width="544" height="14" fill="url(#hs)"/><rect x="940" y="498" width="544" height="14" fill="url(#hs)"/><rect x="940" y="626" width="544" height="14" fill="url(#hs)"/><rect x="976" y="288" width="132" height="72" rx="14" fill="#34363c"/><rect x="976" y="288" width="132" height="72" rx="14" fill="url(#hroll)"/><rect x="1120" y="288" width="132" height="72" rx="14" fill="#161618"/><rect x="1120" y="288" width="132" height="72" rx="14" fill="url(#hroll)"/><rect x="1264" y="288" width="100" height="72" rx="14" fill="#F2B705"/><rect x="1264" y="288" width="100" height="72" rx="14" fill="url(#hroll)"/><rect x="1376" y="304" width="84" height="56" rx="6" fill="#23262c" stroke="#3a3d44" stroke-width="2"/><rect x="976" y="426" width="150" height="72" rx="6" fill="#23262c" stroke="#3a3d44" stroke-width="2"/><rect x="990" y="440" width="64" height="10" rx="3" fill="#F2B705"/><rect x="1140" y="440" width="104" height="58" rx="6" fill="#2a2c32" stroke="#3a3d44" stroke-width="2"/><g fill="#1a1a1c" stroke="#3a3d44" stroke-width="2"><rect x="1270" y="454" width="190" height="14" rx="3"/><rect x="1270" y="470" width="190" height="14" rx="3"/><rect x="1270" y="486" width="190" height="12" rx="3"/></g><rect x="976" y="552" width="190" height="74" rx="8" fill="#1a1a1c" stroke="#3a3d44" stroke-width="2"/><path d="M986 566l170 50M1010 556l140 62" stroke="#fff" stroke-opacity=".08" stroke-width="2"/><rect x="1190" y="560" width="110" height="66" rx="6" fill="#23262c" stroke="#3a3d44" stroke-width="2"/><rect x="1316" y="544" width="146" height="82" rx="8" fill="#2b2c31" stroke="#3a3d44" stroke-width="2"/></g><!-- floor --><rect y="640" width="1600" height="260" fill="url(#hf)"/><rect y="628" width="1600" height="14" fill="#0a0b0d"/><g stroke="#fff" stroke-opacity=".045" stroke-width="2"><path d="M800 640L-700 900M800 640L-300 900M800 640L100 900M800 640L500 900M800 640L800 900M800 640L1100 900M800 640L1500 900M800 640L1900 900M800 640L2300 900"/><path d="M0 676H1600M0 724H1600M0 790H1600"/></g><!-- lamp light cones --><path d="M410 130L470 130L690 650L190 650Z" fill="url(#hc)"/><path d="M1130 130L1190 130L1410 650L910 650Z" fill="url(#hc)"/><ellipse cx="440" cy="722" rx="300" ry="54" fill="url(#hp)"/><ellipse cx="1160" cy="722" rx="300" ry="54" fill="url(#hp)"/><!-- ceiling lamps --><g><path d="M440 0V86M1160 0V86" stroke="#0a0a0b" stroke-width="5"/><path d="M376 142Q440 72 504 142Z" fill="#0d0e10" stroke="#2c2f36" stroke-width="3"/><ellipse cx="440" cy="144" rx="28" ry="9" fill="#fff4cf"/><circle cx="440" cy="150" r="96" fill="url(#hp)"/><path d="M1096 142Q1160 72 1224 142Z" fill="#0d0e10" stroke="#2c2f36" stroke-width="3"/><ellipse cx="1160" cy="144" rx="28" ry="9" fill="#fff4cf"/><circle cx="1160" cy="150" r="96" fill="url(#hp)"/></g><!-- neon halo + floor glow --><ellipse cx="800" cy="236" rx="500" ry="270" fill="url(#hn)"/><ellipse cx="800" cy="770" rx="540" ry="110" fill="url(#hn)" opacity=".4"/><!-- hanging sign --><g><path d="M690 64V176M910 64V176" stroke="#5a5f69" stroke-width="4" stroke-dasharray="10 5"/><rect x="620" y="170" width="360" height="150" rx="14" fill="#08090b" stroke="#2c2f36" stroke-width="5"/><rect x="638" y="188" width="324" height="114" rx="8" fill="none" stroke="#F2B705" stroke-opacity=".22" stroke-width="12"/><rect x="638" y="188" width="324" height="114" rx="8" fill="none" stroke="#ffd95a" stroke-opacity=".95" stroke-width="3"/><g font-family="Barlow Condensed,Inter,Arial,sans-serif" font-weight="800" font-style="italic" text-anchor="middle"><text x="800" y="222" font-size="19" letter-spacing="9" fill="#F2B705" font-style="normal" font-weight="700">EST. 1947</text><text x="800" y="290" font-size="92" letter-spacing="3" fill="none" stroke="#F2B705" stroke-opacity=".16" stroke-width="22" stroke-linejoin="round">TURN.</text><text x="800" y="290" font-size="92" letter-spacing="3" fill="none" stroke="#F2B705" stroke-opacity=".38" stroke-width="10" stroke-linejoin="round">TURN.</text><text x="800" y="290" font-size="92" letter-spacing="3" fill="#fff0b8" stroke="#F2B705" stroke-width="2.2" stroke-linejoin="round">TURN.</text></g></g><!-- small OPEN neon --><g><circle cx="1378" cy="206" r="90" fill="url(#hr)"/><rect x="1330" y="184" width="96" height="44" rx="22" fill="#0a0a0c" stroke="#ff3b4a" stroke-opacity=".3" stroke-width="9"/><rect x="1330" y="184" width="96" height="44" rx="22" fill="none" stroke="#ff6b78" stroke-width="2.4"/><text x="1378" y="214" font-family="Noto Sans JP,Inter,sans-serif" font-weight="900" font-size="20" text-anchor="middle" fill="#ffd0d4" stroke="#ff3b4a" stroke-width=".8" letter-spacing="2">営業中</text></g></svg>`;
+function heroScene(){let d='';for(let i=0;i<16;i++){const x=(i*37+11)%100,dl=(i*1.7)%9,du=9+(i*3)%8,dx=((i%5)-2)*18;d+=`<i style="--x:${x}%;--dl:-${dl}s;--d:${du}s;--dx:${dx}px"></i>`}return `<div class="scene" aria-hidden="true">${HERO_SVG}</div><div class="dust" aria-hidden="true">${d}</div><div class="lb t"></div><div class="lb b"></div>`}
+function reveal(){try{if(reveal.o)reveal.o.disconnect();if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;const io=reveal.o=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const t=e.target;t.classList.add('in');io.unobserve(t);setTimeout(()=>{t.classList.remove('rv','in');t.style.transitionDelay=''},900)}),{rootMargin:'0px 0px -6% 0px',threshold:.06});document.querySelectorAll('#app .card,#app .hd,#app .panel,#app .trust>div,#app .why').forEach((el,i)=>{if(el.closest('.cine'))return;el.classList.add('rv');el.style.transitionDelay=(i%4)*60+'ms';io.observe(el)})}catch(e){}}
+
+const CATS={steering:'Steering covers',curtain:'Curtains',seat:'Seat covers',mat:'Floor mats',dash:'Dash mats',acc:'Cab accessories'};
+const P=[
+{id:1,n:'Leather Steering Cover',c:'steering',p:4800,f:'SML',col:['Black','Grey'],d:'Hand-stitched synthetic leather with a non-slip inner lining.'},
+{id:2,n:'Grip Wool Steering Cover',c:'steering',p:3600,f:'SML',col:['Charcoal','Black'],d:'Warm in winter, breathable in summer. Machine washable.'},
+{id:3,n:'Blackout Cab Curtain Set',c:'curtain',p:12800,f:'ML',col:['Black','Charcoal'],d:'Windscreen, side and rear panels with magnetic edges for rest stops.'},
+{id:4,n:'Quilted Cab Curtain',c:'curtain',p:9800,f:'SML',col:['Grey','Black'],d:'Insulated quilting. Cut to your cab model in our workshop.'},
+{id:5,n:'Mesh Seat Cover Pair',c:'seat',p:15400,f:'ML',col:['Black','Grey'],d:'Airflow mesh for long hauls. Fits driver and passenger seats.'},
+{id:6,n:'Heavy-Duty Floor Mat',c:'mat',p:7200,f:'SML',col:['Black'],d:'Raised edges hold water and mud. Trim to fit.'},
+{id:7,n:'Suede Dash Mat',c:'dash',p:5500,f:'SML',col:['Black','Charcoal'],d:'Cuts glare and keeps small items from sliding.'},
+{id:8,n:'Cab Tissue &amp; Cup Holder',c:'acc',p:2900,f:'SML',col:['Black','Grey'],d:'Clips to the visor or door pocket. No tools.'}];
+const ST=[['Head office &amp; sewing factory','Himeji, Hyogo','Weekdays 8:30–17:30','079-253-2175'],['Ako store','Ako, Hyogo','Daily 9:00–19:00','0791-49-3340'],['Wadayama store','Asago, Hyogo','Daily 9:00–19:00','079-670-0555'],['Takasago store','Takasago, Hyogo','Daily 9:00–19:00','079-447-1393'],['Nara Hari store','Nara','Daily 9:00–19:00','0743-84-7280'],['Saga Tosu store','Tosu, Saga','Daily 9:00–19:00','0942-84-8755']];
+const MAKES=['Isuzu','Hino','Mitsubishi Fuso','UD Trucks','Toyota','Mazda'];const CLS={S:'Light (kei–2t)',M:'Medium (4t)',L:'Large (10t+)'};
+const DEV=location.search.indexOf('dev')>-1;if(DEV)document.body.classList.add('dv');let s={page:'home',arg:null,bag:[],veh:null,cat:'all',sort:'feat',q:'',col:null,qty:1,wish:[],lang:'ja',rev:{},vids:{},cfg:{steer:'Black',curt:'Black',seat:'Black'}};
+const $=x=>document.querySelector(x),yen=n=>'¥'+n.toLocaleString('en-US'),by=id=>P.find(p=>p.id==id);
+function art(c){const o={steering:'<circle class="s" cx="100" cy="75" r="46"/><circle class="i" cx="100" cy="75" r="11"/><path class="i" d="M96 80h8v44h-8zM58 70l36 8-2 8-36-8zM142 70l-36 8 2 8 36-8z"/>',curtain:'<rect class="l" x="30" y="20" width="140" height="110"/><path class="m" d="M30 20h140v10H30z"/><path class="i" d="M30 30h28v100H30zM66 30h28v100H66zM142 30h28v100h-28z"/><path class="m" d="M58 30h8v100h-8zM94 30h8v60h-8z"/>',seat:'<path class="i" d="M62 20h48a10 10 0 0 1 10 10v66h30a10 10 0 0 1 10 10v24H62z"/><rect class="m" x="72" y="34" width="38" height="52" rx="6"/><path class="a" d="M62 128h88v6H62z"/>',mat:'<rect class="i" x="52" y="14" width="96" height="122" rx="14"/><path class="m" d="M64 28h72v8H64zM64 46h72v8H64zM64 64h72v8H64zM64 82h72v8H64zM64 100h72v8H64z"/><rect class="a" x="52" y="120" width="96" height="6"/>',dash:'<rect class="l" x="20" y="50" width="160" height="60" rx="10"/><rect class="i" x="34" y="62" width="132" height="36" rx="6"/><circle class="a" cx="60" cy="80" r="8"/><circle class="m" cx="100" cy="80" r="8"/><circle class="m" cx="140" cy="80" r="8"/>',acc:'<rect class="i" x="56" y="40" width="88" height="70" rx="8"/><rect class="m" x="68" y="52" width="64" height="12" rx="3"/><circle class="a" cx="100" cy="88" r="12"/><path class="m" d="M80 20h40v20H80z"/>'};return`<svg class="art" viewBox="0 0 200 150" role="img" aria-label="${CATS[c]}">${o[c]}</svg>`}
+const fits=p=>!s.veh||p.f.includes(s.veh.k);
+function card(p){return`<article class="card" data-go="product:${p.id}"><div class="art">${art(p.c)}</div><div class="t"><div class="sm mut">${CATS[p.c]}</div><h3>${p.n}</h3><div>${stars(p.id)} ${yen(p.p)}</div></div><button class="h" data-wish="${p.id}" aria-label="Wishlist">${s.wish.includes(p.id)?'♥':'♡'}</button><button class="q" data-add="${p.id}" aria-label="Quick add ${p.n}">+</button></article>`}
+const count=()=>s.bag.reduce((a,b)=>a+b.q,0),sub=()=>s.bag.reduce((a,b)=>a+by(b.id).p*b.q,0);
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('on'),1800)}
+function add(id,col,q){const p=by(id),c=col||p.col[0];const e=s.bag.find(b=>b.id==id&&b.c==c);e?e.q+=q||1:s.bag.push({id,c,q:q||1});toast('Added to bag');chrome()}
+function go(pg,arg){s.page=pg;s.arg=arg===undefined?null:arg;if(pg=='product'){s.col=null;s.qty=1}render();scrollTo(0,0)}
+function chrome(){$('#bagb').textContent='Bag ('+count()+')';$('#wishb').textContent='♡ '+s.wish.length;$('#lang').textContent=s.lang=='ja'?'EN':'日本語';const n=[['shop','Shop'],['config','3D cab builder'],['custom','Custom order'],['story','Our story'],['stores','Stores']].concat(DEV?[['design','Design system'],['ux','UX notes']]:[]);$('#nav').innerHTML=n.map(x=>`<a data-go="${x[0]}" class="${s.page==x[0]?'on':''}">${x[1]}</a>`).join('')}
+const pages={
+home(){return`<section class="hero cine">${heroScene()}<div class="wrap hc"><div class="sm" style="color:var(--acc);font-weight:600;letter-spacing:.1em">SINCE 1947 · HIMEJI, JAPAN</div><h1 class="chrome" style="margin-top:10px;font-size:60px">Make the cab<br>feel like yours.</h1><p>Steering covers, curtains and seat covers sewn by our own craftspeople, for trucks from kei to 10-tonne.</p><button class="btn p" data-go="shop">Shop all parts</button> <button class="btn" style="color:#fff;border-color:#55575C" data-go="custom">Order made-to-measure</button></div></section>
+<div class="wrap"><form class="sel" data-form="veh"><div><label>Truck make</label><select id="mk">${MAKES.map(m=>`<option>${m}</option>`).join('')}</select></div><div><label>Size class</label><select id="cl">${Object.entries(CLS).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select></div><button class="btn d">Find parts that fit</button></form>
+<div class="trust"><div><b>Fit guaranteed</b>Or free exchange</div><div><b>Own workshop</b>Sewn in Himeji</div><div><b>Ships in 2 days</b>Free over ¥10,000</div><div><b>6 stores</b>Hyogo, Nara, Saga</div></div>
+${storyHtml()}<section class="sec"><div class="hd"><h2>Shop by category</h2><button class="lnk" data-go="shop">View all</button></div><div class="grid g3">${Object.entries(CATS).map(([k,v])=>`<div class="card cat" data-go="shop:${k}"><div class="art">${art(k)}</div>${v}</div>`).join('')}</div></section>
+<section class="sec" style="padding-top:0"><div class="hd"><h2>Best sellers</h2><button class="lnk" data-go="shop">See more</button></div><div class="grid">${P.slice(0,4).map(card).join('')}</div></section>
+${vidsHtml()}<section class="panel split" style="margin-bottom:20px"><div><h2>Don’t see your cab?</h2><p class="mut" style="margin-top:10px">Send us your truck model and colours. Our craftspeople will cut it to order.</p></div><div style="align-self:center"><button class="btn p" data-go="custom">Start a custom order</button></div></section></div>`},
+shop(){const l=P.filter(p=>(s.cat=='all'||p.c==s.cat)&&fits(p)&&(!s.q||(p.n+CATS[p.c]).toLowerCase().includes(s.q.toLowerCase())));if(s.sort=='lo')l.sort((a,b)=>a.p-b.p);if(s.sort=='hi')l.sort((a,b)=>b.p-a.p);
+return`<div class="wrap sec"><div class="sm mut"><a data-go="home" style="cursor:pointer">Home</a> / Shop</div><div class="hd" style="margin-top:8px"><h2>${s.cat=='all'?'All parts':CATS[s.cat]}</h2><div><label>Sort</label><select data-sort><option value="feat">Featured</option><option value="lo" ${s.sort=='lo'?'selected':''}>Price: low to high</option><option value="hi" ${s.sort=='hi'?'selected':''}>Price: high to low</option></select></div></div>
+<div class="chips">${[['all','All'],...Object.entries(CATS)].map(([k,v])=>`<button class="chip ${s.cat==k?'on':''}" data-go="shop:${k}">${v}</button>`).join('')}${s.veh?`<button class="chip on" data-act="clrveh">Fits: ${s.veh.m} · ${CLS[s.veh.k]} ✕</button>`:''}${s.q?`<button class="chip on" data-act="clrq">“${s.q}” ✕</button>`:''}</div>
+<p class="sm mut">${l.length} result${l.length==1?'':'s'}</p>${l.length?`<div class="grid">${l.map(card).join('')}</div>`:`<div class="panel" style="text-align:center"><h3>No parts match</h3><p class="mut">Try another size class, or we can make it for you.</p><button class="btn d" data-act="reset">Clear filters</button> <button class="btn" data-go="custom">Custom order</button></div>`}</div>`},
+product(){const p=by(s.arg),c=s.col||p.col[0],rel=P.filter(x=>x.c==p.c&&x.id!=p.id).concat(P.filter(x=>x.c!=p.c)).slice(0,4);
+return`<div class="wrap sec"><div class="sm mut"><a data-go="home" style="cursor:pointer">Home</a> / <a data-go="shop:${p.c}" style="cursor:pointer">${CATS[p.c]}</a> / ${p.n}</div><div class="split" style="margin-top:16px"><div class="card" style="cursor:default"><div class="art">${art(p.c)}</div></div><div><h1 style="font-size:32px">${p.n}</h1><div style="margin-top:6px">${stars(p.id)} <span class="sm mut">${revs(p.id).length} reviews</span></div><p style="font-size:22px;font-weight:600;margin:8px 0 14px">${yen(p.p)} <span class="sm mut">tax incl.</span></p><p class="mut">${p.d}</p>
+<label>Colour: ${c}</label><div class="sw">${p.col.map(x=>`<button class="${x==c?'on':''}" data-act="col:${x}">${x}</button>`).join('')}</div>
+<label>Fits</label><p class="sm">${[...p.f].map(k=>CLS[k]).join(', ')} trucks. <button class="lnk" data-go="info:Size guide">Size guide</button></p>
+<div class="row" style="margin:18px 0"><div class="qty"><button data-act="q-">−</button><span>${s.qty}</span><button data-act="q+">+</button></div><button class="btn p" style="flex:1" data-act="addp">Add to bag</button></div>
+<button class="btn w" data-act="buy">Buy now</button><button class="btn w" style="margin-top:10px" data-wish="${p.id}">${s.wish.includes(p.id)?'♥ Saved to wishlist':'♡ Save to wishlist'}</button><div class="panel sm" style="margin-top:18px">Ships in 2 working days · Free over ¥10,000 · 30-day returns. <button class="lnk" data-go="custom">Need another size? Order made-to-measure</button></div></div></div>
+${reviewsHtml(p.id)}<div class="hd" style="margin-top:44px"><h2>You may also need</h2></div><div class="grid">${rel.map(card).join('')}</div></div>`},
+bag(){if(!s.bag.length)return`<div class="wrap sec" style="text-align:center"><h2>Your bag is empty</h2><p class="mut">Add a few parts and they’ll appear here.</p><button class="btn p" data-go="shop">Start shopping</button></div>`;const t=sub(),rem=Math.max(0,10000-t);
+return`<div class="wrap sec"><h2 style="margin-bottom:20px">Your bag (${count()})</h2><div class="bagl"><div>${s.bag.map((b,i)=>{const p=by(b.id);return`<div class="line"><div class="card" data-go="product:${p.id}"><div class="art">${art(p.c)}</div></div><div><h3>${p.n}</h3><div class="sm mut">${b.c} · ${yen(p.p)}</div><div class="row" style="margin-top:8px"><div class="qty"><button data-act="bq-:${i}">−</button><span>${b.q}</span><button data-act="bq+:${i}">+</button></div><button class="lnk" data-act="rm:${i}">Remove</button></div></div><b>${yen(p.p*b.q)}</b></div>`}).join('')}<p style="margin-top:16px"><button class="lnk" data-go="shop">← Continue shopping</button></p></div>
+<div class="panel sum"><p class="sm">${rem?`Add ${yen(rem)} more for free shipping`:'You’ve got free shipping'}</p><div class="prog"><i style="width:${Math.min(100,t/100)}%"></i></div><div><span>Subtotal</span><b>${yen(t)}</b></div><div><span class="mut">Shipping</span><span>${rem?'¥800':'Free'}</span></div><div style="font-size:18px;border-top:1px solid var(--line);padding-top:10px"><b>Total</b><b>${yen(t+(rem?800:0))}</b></div><button class="btn p w" data-go="checkout">Checkout</button></div></div></div>`},
+checkout(){if(!s.bag.length)return pages.bag();const t=sub(),sh=t<10000?800:0;
+return`<div class="wrap sec"><button class="lnk" data-go="bag">← Back to bag</button><h2 style="margin:10px 0 20px">Checkout</h2><form data-form="order" class="bagl"><div class="grid g2" style="gap:14px"><div><label>Full name</label><input required></div><div><label>Email</label><input type="email" required></div><div style="grid-column:1/-1"><label>Address</label><input required></div><div><label>Postcode</label><input required></div><div><label>Phone</label><input required></div><div style="grid-column:1/-1"><label>Payment</label><select><option>Credit card</option><option>Bank transfer</option><option>Pay at store</option></select></div></div>
+<div class="panel sum"><h3 style="margin-bottom:10px">Order summary</h3>${s.bag.map(b=>`<div class="sm"><span>${by(b.id).n} × ${b.q}</span><span>${yen(by(b.id).p*b.q)}</span></div>`).join('')}<div><span class="mut">Shipping</span><span>${sh?yen(sh):'Free'}</span></div><div style="font-size:18px"><b>Total</b><b>${yen(t+sh)}</b></div><button class="btn p w">Place order</button></div></form></div>`},
+done(){return`<div class="wrap sec" style="text-align:center;max-width:520px"><h1 style="font-size:32px">Thank you.</h1><p class="mut" style="margin:12px 0 20px">Order <b>${s.arg}</b> is confirmed. A receipt is on its way to your inbox.</p><button class="btn p" data-go="home">Back to home</button> <button class="btn" data-go="info:Track order">Track order</button></div>`},
+custom(){return`<div class="wrap sec" style="max-width:720px"><h2>Made-to-measure</h2><p class="mut" style="margin:8px 0 20px">Tell us the cab and the look. A craftsperson replies within 2 working days.</p><form data-form="custom" class="grid g2" style="gap:14px"><div><label>Truck make</label><select>${MAKES.map(m=>`<option>${m}</option>`).join('')}</select></div><div><label>Model &amp; year</label><input required></div><div><label>Item</label><select>${Object.values(CATS).map(m=>`<option>${m}</option>`).join('')}</select></div><div><label>Material</label><select><option>Leather</option><option>Suede</option><option>Wool</option><option>Quilted fabric</option></select></div><div style="grid-column:1/-1"><label>Photo of your cab (optional)</label><input type="file"></div><div style="grid-column:1/-1"><label>Notes</label><textarea rows="4"></textarea></div><div style="grid-column:1/-1"><label>Email</label><input type="email" required></div><button class="btn p w" style="grid-column:1/-1">Send request</button></form></div>`},
+story(){return`<div class="wrap sec" style="max-width:760px"><h1 style="font-size:36px">Over 75 years, one thing: the truck cab.</h1><p class="mut" style="margin:16px 0">TURN began in 1947 and has stayed focused on making a driver’s long working day more comfortable. Every cover and curtain is made in our own Himeji workshop in small batches.</p><div class="grid g3" style="margin:24px 0">${[['1947','Founded in Hyogo'],['Own factory','Craftspeople sew in-house'],['Dekotora','Spreading Japanese truck culture worldwide']].map(x=>`<div class="panel"><h3>${x[0]}</h3><p class="sm mut" style="margin:6px 0 0">${x[1]}</p></div>`).join('')}</div><button class="btn p" data-go="custom">Order made-to-measure</button> <button class="btn" data-go="stores">Visit a store</button></div>`},
+stores(){return`<div class="wrap sec"><h2 style="margin-bottom:20px">Our stores</h2><div class="grid g3">${ST.map((x,i)=>`<div class="card" data-go="store:${i}" style="padding:18px"><h3>${x[0]}</h3><p class="sm mut" style="margin:6px 0 0">${x[1]}<br>${x[2]}</p></div>`).join('')}</div></div>`},
+store(){const x=ST[s.arg];return`<div class="wrap sec" style="max-width:640px"><button class="lnk" data-go="stores">← All stores</button><h2 style="margin:10px 0">${x[0]}</h2><div class="panel"><p>${x[1]}</p><p>${x[2]}</p><p>Tel ${x[3]}</p><button class="btn p" data-act="toast:Opening map in production">Get directions</button> <button class="btn" data-go="info:Contact">Contact</button></div></div>`},
+info(){const t=s.arg;const f=t=='Contact'||t=='Sign in';return`<div class="wrap sec" style="max-width:640px"><button class="lnk" data-go="home">← Home</button><h2 style="margin:10px 0 14px">${t}</h2>${f?`<form data-form="${t=='Sign in'?'signin':'contact'}"><label>Email</label><input type="email" required style="margin-bottom:12px">${t=='Sign in'?'<label>Password</label><input type="password" required style="margin-bottom:12px">':'<label>Message</label><textarea rows="4" required style="margin-bottom:12px"></textarea>'}<button class="btn p w">${t=='Sign in'?'Sign in':'Send'}</button></form>`:`<p class="mut">Placeholder copy for “${t}”. Edit this text directly in Edit mode, or replace it in the content file.</p><button class="btn p" data-go="shop">Continue shopping</button>`}</div>`},
+design(){const C=[['--ink','#111214'],['--ink2','#2A2B2E'],['--mid','#76777D'],['--line','#D8D8DB'],['--s2','#E7E7E9'],['--s1','#F4F4F5'],['--bg','#FFFFFF'],['--acc','#F2B705']];
+return`<div class="wrap sec"><h1 style="font-size:36px">Design system</h1><p class="mut" style="margin:8px 0 28px">Every screen uses only these tokens. Change the controls and the whole prototype updates.</p>
+<h3>Colour</h3><div class="sw2" style="margin:12px 0 28px">${C.map(c=>`<div><i style="background:var(${c[0]})"></i><b>${c[0]}</b><br>${c[1]}</div>`).join('')}</div>
+<div class="panel row" style="margin-bottom:28px;flex-wrap:wrap"><div><label>Accent colour</label><input type="color" id="tacc" value="#F2B705" style="padding:2px;height:40px"></div><div><label>Corner radius</label><input type="range" id="trad" min="0" max="20" value="6"></div><button class="btn" data-act="light">Force light</button><button class="btn" data-act="dark">Force dark</button></div>
+<h3>Type (Inter)</h3><div style="margin:12px 0 28px"><div style="font-size:44px;font-weight:800;letter-spacing:-.02em">Display 44/800</div><div style="font-size:28px;font-weight:700">Heading 28/700</div><div style="font-size:17px;font-weight:600">Title 17/600</div><div>Body 15/400</div><div class="sm mut">Caption 13/400</div></div>
+<h3>Buttons</h3><div class="row" style="margin:12px 0 28px;flex-wrap:wrap"><button class="btn p">Primary</button><button class="btn d">Dark</button><button class="btn">Secondary</button><button class="lnk">Text link</button></div>
+<h3>Spacing &amp; layout</h3><p class="sm mut" style="margin:8px 0 28px">8-pt scale: 8, 12, 16, 20, 24, 32, 44. 1160px max width, 4-column grid, 18px gutters, 6px radius on controls, 10px on cards.</p>
+<h3>Components</h3><div class="grid g3" style="margin-top:12px">${P.slice(0,1).map(card).join('')}<div class="panel"><label>Input</label><input placeholder="Placeholder"><div class="chips" style="margin:12px 0 0"><span class="chip on">Chip on</span><span class="chip">Chip</span></div></div><div class="panel"><b>Panel</b><p class="sm mut">Used for summaries and notices.</p></div></div></div>`},
+ux(){const W=[['Vehicle selector under the hero','Fit is the biggest worry when buying truck parts, so the first thing a visitor can do is say which truck they drive. RealTruck and ExtremeTerrain lead with this. Placing it above the categories means one action filters the whole shop.'],['One amber button per screen','Amber is the only colour in a black, grey and white system, so the eye goes to it first. Secondary actions are outlined, tertiary are text links. Two amber buttons would split attention.'],['Trust strip right after the selector','Guarantee, shipping and local stores answer “can I trust this shop?” before browsing. After the product grid it would be seen too late.'],['Quick-add “+” bottom-right of cards','Bottom-right is where the thumb lands on mobile and keeps the tap target away from the title and price, which open the product. It stops accidental taps.'],['Add to bag below colour and quantity','Choices come first, then action, matching reading order. If the button sat beside the price, people could add before choosing a colour.'],['Buy now below Add to bag, not beside it','Side by side they compete. Stacked, Add to bag is clearly the main path and Buy now is a shortcut.'],['“Continue shopping” as a text link, left','Checkout is the goal on the bag page, so it is a full button on the right. Leaving the page is quiet, and on the left where “back” is expected.'],['Remove is small grey text','It is destructive and rare. A bright button next to quantity would invite mistakes.'],['Place order only at the end of the form','The summary and total sit beside it so the final price is seen at the moment of commitment.'],['Custom order is in the main nav','Made-to-measure is TURN’s real difference from big marketplaces, so it earns top-level space, and it is the fallback on empty results.'],['Bag top-right','Universal convention: people look there without thinking. It shows the live count so every “Add” has visible feedback.']];
+return`<div class="wrap sec" style="max-width:800px"><h1 style="font-size:36px">UX decisions</h1><p class="mut" style="margin:8px 0 28px">Where each button is, and why it isn’t somewhere else.</p>${W.map(w=>`<div class="why"><b>${w[0]}</b><span class="mut">${w[1]}</span></div>`).join('')}</div>`}};
+const esc=x=>String(x).replace(/[&<>]/g,c=>'&#'+c.charCodeAt(0)+';');
+const BASE=[[{n:'Kenji T. · Isuzu Giga',s:5,t:'Fitted first time. The stitching beats anything off the shelf.'},{n:'Mika S. · Hino Ranger',s:4,t:'Looks great, arrived in two days.'}],[{n:'Daisuke H. · UD Quon',s:5,t:'Night drives feel calmer. The quality is obvious.'},{n:'Aki M. · Fuso Canter',s:5,t:'Exactly my cab. Worth every yen.'}],[{n:'Ryo N. · Toyota Dyna',s:4,t:'Good grip and easy to wash.'},{n:'Sato K. · Isuzu Forward',s:5,t:'Third set I have bought. Not going elsewhere.'}]];
+const revs=id=>(s.rev[id]||[]).concat(BASE[id%3]);
+function stars(id){const l=revs(id),a=l.reduce((x,r)=>x+r.s,0)/l.length,n=Math.round(a);return`<span style='color:var(--acc)'>${'★'.repeat(n)}${'☆'.repeat(5-n)}</span> <span class='sm mut'>${a.toFixed(1)}</span>`}
+function reviewsHtml(id){const l=revs(id);return`<section class='sec' style='padding-bottom:0'><div class='hd'><h2>Driver reviews</h2><span>${stars(id)} <span class='sm mut'>${l.length} reviews · sample data</span></span></div><div class='split' style='gap:24px'><div>${l.map(r=>`<div class='why'><b>${'★'.repeat(r.s)}${'☆'.repeat(5-r.s)} ${r.n}</b><span class='mut'>${r.t}</span></div>`).join('')}</div><form data-form='review' class='panel'><h3 style='margin-bottom:10px'>Write a review</h3><label>Name</label><input name='n' required><label style='margin-top:8px'>Rating</label><select name='r'><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select><label style='margin-top:8px'>Your review</label><textarea name='t' rows='3' required></textarea><button class='btn p w' style='margin-top:12px'>Submit review</button></form></div></section>`}
+const DRV=[['Kenji · Isuzu Giga','Osaka to Tokyo, 3,000 km a month'],['Mika · Hino Ranger','Night runs, Kobe to Nagoya'],['Daisuke · UD Quon','Long haul, Kyushu to Hokkaido']];
+function vidsHtml(){return`<section class='sec' style='padding-top:0'><div class='hd'><h2>Drivers on camera</h2><span class='sm mut'>Tap a tile to add your own customer clip</span></div><div class='grid g3'>${DRV.map((d,i)=>`<div>${s.vids[i]?`<video src='${s.vids[i]}' controls playsinline style='width:100%;aspect-ratio:16/9;background:#000;border:2px solid var(--ink)'></video>`:`<label class='vid'><input type='file' accept='video/*' data-vid='${i}' hidden><div class='play'>▶</div><span class='sm'>Add driver video</span></label>`}<h3 style='margin-top:8px'>${d[0]}</h3><div class='sm mut'>${d[1]}</div></div>`).join('')}</div></section>`}
+const CH=[['01','Measured in Himeji','Every cab model is cut from our own patterns.'],['02','Sewn by hand','Our craftspeople stitch each piece in the workshop.'],['03','Fitted to your cab','Delivered ready to fit, and guaranteed.']];
+function storyHtml(){return`<section id='sty' style='height:320vh;position:relative;margin-top:36px'><div style='position:sticky;top:90px;height:calc(100vh - 120px);min-height:420px;background:#0E0F10;color:#fff;border:2px solid var(--ink);overflow:hidden'><div id='sy-t' style='position:absolute;left:28px;top:28px;max-width:440px;z-index:2'></div><svg viewBox='0 0 1000 320' style='position:absolute;left:0;bottom:12px;width:100%'><rect y='250' width='1000' height='70' fill='#131416'/><line id='sy-d' x1='0' x2='1000' y1='285' y2='285' stroke='#e6e6e8' stroke-width='5' stroke-dasharray='60 60'/><g id='sy-g'><rect y='100' width='250' height='130' fill='#e9eaec'/><rect y='190' width='250' height='14' fill='#F2B705'/><text x='22' y='160' font-family='Inter,Arial' font-weight='900' font-size='46' fill='#111214'>TURN<tspan fill='#F2B705'>.</tspan></text><path d='M258 230V130h70l40 50v50z' fill='#1b1c1f'/><path d='M270 175v-38h52l28 38z' fill='#16293d'/><rect x='258' y='226' width='116' height='10' fill='#0d0d0e'/><rect x='366' y='196' width='8' height='14' fill='#fff3cf'/>${[60,170,330].map(x=>`<circle cx='${x}' cy='245' r='26' fill='#0b0b0c'/><circle cx='${x}' cy='245' r='14' fill='#b9bcc2'/>`).join('')}</g></svg><div class='haz' style='position:absolute;bottom:0;left:0;right:0'></div></div></section>`}
+let sc=-1;function storyTick(){const el=document.getElementById('sty');if(!el)return;const r=el.getBoundingClientRect(),p=Math.max(0,Math.min(1,-r.top/(r.height-innerHeight))),t=document.getElementById('sy-t');document.getElementById('sy-g').setAttribute('transform','translate('+(-420+p*820)+',0)');document.getElementById('sy-d').setAttribute('stroke-dashoffset',-p*1600);const i=p<.33?0:p<.66?1:2;if(i!=sc||!t.innerHTML){sc=i;const c=CH[i];t.innerHTML=`<div style='color:var(--acc);font-weight:800'>${c[0]} / 03</div><h2 class='chrome' style='font-size:40px;margin:8px 0'>${c[1]}</h2><p style='color:#B8B9BE'>${c[2]}</p>${i==2?"<button class='btn p' data-go='shop'>Shop now</button>":''}`;if(s.lang=='ja')tr()}}
+addEventListener('scroll',storyTick,{passive:true});
+const CFGO={steer:['Black','Grey','Amber','Red'],curt:['Black','Charcoal','Purple','Gold'],seat:['Black','Grey','Blue','Red']},HEX={Black:0x1a1a1c,Grey:0x8a8b90,Amber:0xF2B705,Red:0xc4161c,Charcoal:0x3a3b3f,Purple:0x5b2a86,Gold:0xc79a2a,Blue:0x1f4aa8};let CF=null;
+pages.config=()=>{if(!s.cfg.cls)s.cfg=cfInit();return`<style>
+.cfx{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(330px,1fr);gap:24px;margin-top:20px;align-items:start}
+.cfv{position:sticky;top:130px;height:min(620px,74vh);background:#0B0C0E;border-color:#222;cursor:grab;overflow:hidden}
+.cfv canvas{width:100%;height:100%;display:block;touch-action:pan-y}
+.cfb{position:absolute;left:12px;bottom:12px;right:12px;display:flex;gap:6px;flex-wrap:wrap}
+.cfb button{background:rgba(20,21,23,.88);color:#fff;border:1px solid #3a3c41;border-radius:999px;padding:7px 13px;font:600 12px Inter,system-ui,sans-serif;cursor:pointer}
+.cfb button.on{background:#F2B705;color:#111;border-color:#F2B705}
+.cfh{position:absolute;right:14px;top:12px;color:#9A9BA1;font-size:12px;pointer-events:none}
+.cl{display:flex;gap:6px;flex-wrap:wrap}
+.cl button,.vr button{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:9px 13px;font:inherit;font-size:14px;cursor:pointer;text-align:left}
+.cl button.on,.vr button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.vr{display:flex;gap:8px;margin:12px 0 0}.vr button{flex:1}.vr small{display:block;opacity:.7;font-size:12px}
+.ci{border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:10px;background:var(--bg)}
+.ci.on{border-color:var(--ink)}.ci.dis{opacity:.55}
+.ch{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.tg{border:1px solid var(--ink);background:var(--bg);color:var(--ink);border-radius:8px;padding:7px 14px;font:600 13px inherit;cursor:pointer;white-space:nowrap}
+.tg.on{background:var(--ink);color:var(--bg)}
+.sws{display:flex;align-items:center;gap:8px;margin-top:12px}.sws .pr{margin-left:auto}
+.sw1{width:30px;height:30px;border-radius:50%;border:2px solid var(--line);cursor:pointer;padding:0}
+.sw1.on{outline:2px solid var(--acc);outline-offset:2px}
+.cfs{border:1px solid var(--line);border-radius:10px;padding:16px;background:var(--s1)}
+.cfs>div{display:flex;justify-content:space-between;font-size:14px;padding:3px 0}
+.cfs .tot{border-top:1px solid var(--line);margin-top:8px;padding-top:10px;font-size:17px}
+.bar2{height:5px;background:var(--s2);border-radius:3px;margin-top:8px;overflow:hidden;display:block!important}.bar2 i{display:block;height:100%;background:var(--acc)}
+.cfs .btn[disabled]{opacity:.4;cursor:not-allowed}.lnk{background:none;border:0;color:var(--mid);text-decoration:underline;cursor:pointer;margin-top:10px;font:inherit;font-size:13px}
+@media(max-width:860px){.cfx{grid-template-columns:1fr}.cfv{position:relative;top:0;height:380px}}
+</style><div class='wrap sec'><h2>Build your cab</h2><p class='mut' style='margin:6px 0 0;max-width:620px'>Choose your truck size, pick what you want, and see it in 3D. Add the whole set to your bag in one tap.</p><div class='cfx'><div class='card cfv'><canvas id='cfg'></canvas><div class='cfh'>Drag to rotate</div><div class='cfb'>${[['ov','Overview'],['drv','Driver’s seat'],['sd','Side window'],['fr','From the front']].map(([k,l],i)=>`<button class='${i?'':'on'}' data-cf='view|${k}'>${l}</button>`).join('')}</div></div><div id='cfp'>${cfPanel()}</div></div></div>`}; pages.wish=()=>`<div class='wrap sec'><h2 style='margin-bottom:20px'>Wishlist (${s.wish.length})</h2>${s.wish.length?`<div class='grid'>${s.wish.map(i=>card(by(i))).join('')}</div>`:`<div class='panel' style='text-align:center'><h3>Nothing saved yet</h3><p class='mut'>Tap the heart on any part to save it.</p><button class='btn p' data-go='shop'>Start shopping</button></div>`}</div>`;
+const CFI=[['steer','Steering cover',[1,2]],['curt','Cab curtains',[3,4]],['seat','Seat covers',[5]],['mat','Floor mats',[6]],['dash','Dash mat',[7]]];
+function cfInit(){const k=s.veh&&s.veh.k;return{cls:CLS[k]?k:'M',v:{steer:1,curt:3,seat:5,mat:6,dash:7},on:{steer:1,curt:1,seat:1,mat:0,dash:0},col:{steer:'Black',curt:'Black',seat:'Black',mat:'Black',dash:'Black'}}}
+function cfOk(k){return CFI.find(x=>x[0]==k)[2].filter(id=>by(id).f.indexOf(s.cfg.cls)>-1)}
+function cfV(k){const o=cfOk(k);return o.indexOf(s.cfg.v[k])>-1?s.cfg.v[k]:(o[0]||0)}
+function cfOn(k){return s.cfg.on[k]&&cfV(k)}
+function cfC(k){const v=cfV(k),p=v&&by(v);return p&&p.col.indexOf(s.cfg.col[k])>-1?s.cfg.col[k]:(p?p.col[0]:'Black')}
+function cfHex(c){return '#'+(HEX[c]!=null?HEX[c]:0x1a1a1c).toString(16).padStart(6,'0')}
+function cfPanel(){const c=s.cfg;let tot=0,rows='';
+const cards=CFI.map(([k,l])=>{const ok=cfOk(k);if(!ok.length)return`<div class='ci dis'><div class='ch'><b>${l}</b><span class='mut sm'>Not made for ${CLS[c.cls]} trucks</span></div></div>`;
+const v=cfV(k),p=by(v),on=!!cfOn(k),col=cfC(k);if(on){tot+=p.p;rows+=`<div><span>${l} · ${col}</span><b>${yen(p.p)}</b></div>`}
+return`<div class='ci ${on?'on':''}'><div class='ch'><div><b>${l}</b><div class='mut sm'>${p.d}</div></div><button class='tg ${on?'on':''}' data-cf='tog|${k}' aria-pressed='${on}'>${on?'Added ✓':'Add'}</button></div>${ok.length>1?`<div class='vr'>${ok.map(id=>`<button class='${id==v?'on':''}' data-cf='var|${k}|${id}'>${by(id).n.replace(/\s*(Steering Cover|Cab Curtain( Set)?)$/,'')}<small>${yen(by(id).p)}</small></button>`).join('')}</div>`:''}<div class='sws'><span class='sm mut'>${col}</span>${p.col.map(x=>`<button class='sw1 ${x==col?'on':''}' style='background:${cfHex(x)}' data-cf='col|${k}|${x}' aria-label='${x}' title='${x}'></button>`).join('')}<b class='pr'>${yen(p.p)}</b></div></div>`}).join('');
+return`<div class='sm' style='font-weight:600;margin-bottom:8px'>1 · Your truck size</div><div class='cl'>${Object.keys(CLS).map(k=>`<button class='${k==c.cls?'on':''}' data-cf='cls|${k}'>${CLS[k]}</button>`).join('')}</div><p class='mut sm' style='margin:8px 0 18px'>Only parts that fit this size are shown. Fit guaranteed or free exchange.</p><div class='sm' style='font-weight:600;margin-bottom:8px'>2 · Pick your parts</div>${cards}<div class='cfs'><div style='font-weight:600'>Your set</div>${rows||`<p class='mut sm'>Nothing selected yet.</p>`}<div class='tot'><span>Total</span><b>${yen(tot)}</b></div><span class='bar2'><i style='width:${Math.min(100,tot/100)}%'></i></span><p class='sm mut' style='margin:6px 0 12px'>${tot>=10000?'Free shipping included · ships in 2 days':yen(10000-tot)+' more for free shipping'}</p><button class='btn p w' data-act='cfgadd' ${tot?'':'disabled'}>Add set to bag</button><button class='lnk' data-cf='reset'>Reset</button></div>`}
+function cfgAdd(){let n=0;CFI.forEach(([k])=>{if(cfOn(k)){add(cfV(k),cfC(k),1);n++}});if(n)go('bag')}
+function paintCfg(){CF&&CF.up&&CF.up()}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-cf]');if(!t)return;const[a,k,v]=t.dataset.cf.split('|'),c=s.cfg;
+if(a=='view'){CF&&CF.view(k);document.querySelectorAll('[data-cf^="view|"]').forEach(x=>x.classList.toggle('on',x===t));return}
+if(a=='cls')c.cls=k;else if(a=='tog')c.on[k]=c.on[k]?0:1;else if(a=='var')c.v[k]=+v;else if(a=='col')c.col[k]=v;else if(a=='reset')s.cfg=cfInit();
+const p=$('#cfp');if(p)p.innerHTML=cfPanel();CF&&CF.up();tr()}); function lt(cb,i){i=i||0;if(window.THREE)return cb(1);if(i>1)return cb(0);const e=document.createElement('script');e.src=['https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js','https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js'][i];e.onload=()=>lt(cb,i+1);e.onerror=()=>lt(cb,i+1);document.head.appendChild(e)}
+/* ===== 2D cab preview fallback (added): used whenever 3D is unavailable ===== */
+const CF2D_SEAT=(a)=>`<g id="cf-seat${a}"><path class="cf-sb" d="M156 566Q156 526 198 524H282Q324 526 324 566V900H156Z" style="fill:var(--sc)"/><rect class="cf-sb" x="194" y="482" width="92" height="54" rx="22" style="fill:var(--sc)"/><rect x="214" y="532" width="9" height="12" fill="#0a0a0b"/><rect x="257" y="532" width="9" height="12" fill="#0a0a0b"/><g class="cf-mesh"><path d="M156 566Q156 526 198 524H282Q324 526 324 566V900H156Z" fill="url(#cf-mesh)"/><rect x="194" y="482" width="92" height="54" rx="22" fill="url(#cf-mesh)"/></g><path d="M156 566Q156 526 198 524H282Q324 526 324 566V900H156Z" fill="url(#cf-shade)"/><rect x="194" y="482" width="92" height="54" rx="22" fill="url(#cf-shade)"/><path d="M240 540V900M168 604Q240 620 312 604" fill="none" stroke="#000" stroke-opacity=".38" stroke-width="2"/><path d="M156 566Q156 526 198 524H282Q324 526 324 566" fill="none" stroke="#fff" stroke-opacity=".1" stroke-width="2"/></g>`;
+const CF2D=`<svg id="cf-svg" viewBox="0 0 800 700" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%;display:block;overflow:visible" role="img" aria-label="Cab interior preview">
+<defs>
+<linearGradient id="cf-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#05060d"/><stop offset=".55" stop-color="#101336"/><stop offset=".85" stop-color="#2d1442"/><stop offset="1" stop-color="#7c2c4c"/></linearGradient>
+<radialGradient id="cf-sun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffb27a" stop-opacity=".6"/><stop offset="1" stop-color="#ffb27a" stop-opacity="0"/></radialGradient>
+<linearGradient id="cf-dash" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1e2025"/><stop offset="1" stop-color="#0e0f12"/></linearGradient>
+<linearGradient id="cf-floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#15171c"/><stop offset="1" stop-color="#20232a"/></linearGradient>
+<linearGradient id="cf-shade" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".17"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".4"/></linearGradient>
+<linearGradient id="cf-pleatg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000" stop-opacity=".5"/><stop offset=".35" stop-color="#fff" stop-opacity=".08"/><stop offset=".62" stop-color="#fff" stop-opacity=".02"/><stop offset="1" stop-color="#000" stop-opacity=".5"/></linearGradient>
+<radialGradient id="cf-puff" cx=".5" cy=".5" r=".6"><stop offset="0" stop-color="#fff" stop-opacity=".2"/><stop offset="1" stop-color="#000" stop-opacity=".32"/></radialGradient>
+<pattern id="cf-pleat" width="24" height="40" patternUnits="userSpaceOnUse"><rect width="24" height="40" fill="url(#cf-pleatg)"/></pattern>
+<pattern id="cf-quilt" width="32" height="32" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="32" height="32" fill="url(#cf-puff)"/><path d="M0 0H32M0 0V32" stroke="#000" stroke-opacity=".6" stroke-width="2"/></pattern>
+<pattern id="cf-mesh" width="14" height="14" patternUnits="userSpaceOnUse"><path d="M0 0L14 14M14 0L0 14" stroke="#fff" stroke-opacity=".14" stroke-width="1.4"/></pattern>
+<pattern id="cf-rib" width="100" height="14" patternUnits="userSpaceOnUse"><rect width="100" height="6" fill="#fff" fill-opacity=".1"/><rect y="6" width="100" height="8" fill="#000" fill-opacity=".26"/></pattern>
+<pattern id="cf-suede" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r=".8" fill="#fff" fill-opacity=".12"/><circle cx="4.5" cy="4.5" r=".8" fill="#000" fill-opacity=".24"/></pattern>
+<clipPath id="cf-wsc"><path d="M150 50H650L700 300H100Z"/></clipPath>
+<path id="cf-c1" d="M148 52L318 52L306 296Q272 308 238 296Q204 308 172 298Q136 306 102 298Z"/>
+<path id="cf-c2" d="M652 52L482 52L494 296Q528 308 562 296Q596 308 628 298Q664 306 698 298Z"/>
+<path id="cf-c3" d="M-10 32L108 56L72 296Q30 308 -10 298Z"/>
+<path id="cf-c4" d="M810 32L692 56L728 296Q770 308 810 298Z"/>
+<path id="cf-m1" d="M120 462H372L410 640H70Z"/>
+<path id="cf-m2" d="M428 462H680L730 640H390Z"/>
+<path id="cf-dmp" d="M118 310H682L712 382H88Z"/>
+</defs>
+<g id="cf-w">
+<g id="cf-lf">
+<rect x="-500" y="-500" width="1800" height="1500" fill="#08090c"/>
+<g clip-path="url(#cf-wsc)"><g id="cf-sc">
+<rect x="20" y="30" width="760" height="300" fill="url(#cf-sky)"/>
+<ellipse cx="520" cy="238" rx="270" ry="84" fill="url(#cf-sun)"/>
+<g fill="#080913"><rect x="110" y="196" width="36" height="40"/><rect x="150" y="178" width="28" height="58"/><rect x="182" y="204" width="44" height="32"/><rect x="232" y="186" width="30" height="50"/><rect x="268" y="200" width="40" height="36"/><rect x="450" y="190" width="34" height="46"/><rect x="490" y="172" width="26" height="64"/><rect x="522" y="198" width="44" height="38"/><rect x="572" y="184" width="30" height="52"/><rect x="608" y="202" width="42" height="34"/><rect x="654" y="190" width="36" height="46"/></g>
+<g fill="#ffcf6b" opacity=".75"><rect x="156" y="190" width="4" height="5"/><rect x="164" y="204" width="4" height="5"/><rect x="238" y="198" width="4" height="5"/><rect x="458" y="202" width="4" height="5"/><rect x="496" y="184" width="4" height="5"/><rect x="504" y="204" width="4" height="5"/><rect x="578" y="196" width="4" height="5"/><rect x="660" y="202" width="4" height="5"/></g>
+<rect x="20" y="232" width="760" height="100" fill="#0a0b11"/>
+<path d="M388 232H412L650 330H150Z" fill="#0d0e14"/>
+<path d="M388 232L170 330M412 232L630 330" stroke="#fff" stroke-opacity=".28" stroke-width="2"/>
+<path d="M400 234V330" stroke="#ffd66b" stroke-width="3" stroke-dasharray="9 11" opacity=".8"/>
+<circle cx="300" cy="248" r="16" fill="url(#cf-sun)"/><circle cx="500" cy="248" r="16" fill="url(#cf-sun)"/>
+</g></g>
+<path d="M-10 34L110 56L72 300L-10 330Z" fill="url(#cf-sky)"/><path d="M-10 262L74 252L72 300L-10 330Z" fill="#0a0b11"/>
+<path d="M810 34L690 56L728 300L810 330Z" fill="url(#cf-sky)"/><path d="M810 262L726 252L728 300L810 330Z" fill="#0a0b11"/>
+<rect x="-500" y="-500" width="1800" height="550" fill="#0b0c0f"/>
+<rect x="352" y="8" width="96" height="26" rx="8" fill="#16181c" stroke="#262930"/><circle cx="372" cy="21" r="3" fill="#F2B705"/>
+<path d="M110 56L150 50L100 300H70Z" fill="#0f1013"/><path d="M690 56L650 50L700 300H730Z" fill="#0f1013"/>
+<path d="M150 50H650L700 300H100Z" fill="none" stroke="#1f2228" stroke-width="5"/>
+<path d="M-500 300H70L60 446H-500Z" fill="#111317"/><path d="M1300 300H730L740 446H1300Z" fill="#111317"/>
+<path d="M-500 296H72L74 308H-500Z" fill="#1c1e23"/><path d="M1300 296H728L726 308H1300Z" fill="#1c1e23"/>
+<path d="M-500 380H64L62 396H-500Z" fill="#191b20"/><path d="M1300 380H736L738 396H1300Z" fill="#191b20"/>
+<path d="M100 300H700L740 390H60Z" fill="url(#cf-dash)" stroke="#2b2e35" stroke-width="2"/>
+<path d="M60 390H740L772 446H28Z" fill="#0d0e11" stroke="#22252b" stroke-width="2"/>
+<rect x="352" y="408" width="96" height="14" rx="5" fill="#06070a" stroke="#22252b"/><rect x="352" y="426" width="96" height="8" rx="4" fill="#06070a" stroke="#22252b"/>
+<rect x="476" y="402" width="96" height="30" rx="5" fill="#09171d" stroke="#232b30"/><path d="M486 412H540M486 421H522" stroke="#3de0ff" stroke-opacity=".55" stroke-width="2" stroke-linecap="round"/>
+<circle cx="205" cy="420" r="24" fill="#07080a" stroke="#2d3036" stroke-width="2"/><circle cx="265" cy="420" r="24" fill="#07080a" stroke="#2d3036" stroke-width="2"/>
+<path d="M205 420L218 410M265 420L252 432" stroke="#F2B705" stroke-width="2.4" stroke-linecap="round"/><circle cx="205" cy="420" r="3" fill="#F2B705"/><circle cx="265" cy="420" r="3" fill="#F2B705"/>
+<path d="M28 446H772L1100 1000H-300Z" fill="url(#cf-floor)"/>
+<path d="M335 446H465L520 1000H280Z" fill="#101216" stroke="#1e2126" stroke-width="2"/>
+<g id="cf-mats">
+<use href="#cf-m1" style="fill:var(--mc)"/><use href="#cf-m1" fill="url(#cf-rib)"/><use href="#cf-m1" fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="3"/>
+<use href="#cf-m2" style="fill:var(--mc)"/><use href="#cf-m2" fill="url(#cf-rib)"/><use href="#cf-m2" fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="3"/>
+</g>
+<g id="cf-dm"><use href="#cf-dmp" style="fill:var(--dc)"/><use href="#cf-dmp" fill="url(#cf-suede)"/><use href="#cf-dmp" fill="url(#cf-shade)"/><use href="#cf-dmp" fill="none" stroke="#fff" stroke-opacity=".14" stroke-width="2"/></g>
+</g>
+<g id="cf-lc"><g id="cf-curt">
+<path d="M120 50H680" stroke="#8a8c92" stroke-width="3" stroke-linecap="round"/>
+<use href="#cf-c1" style="fill:var(--cc)"/><use href="#cf-c2" style="fill:var(--cc)"/><use href="#cf-c3" style="fill:var(--cc)"/><use href="#cf-c4" style="fill:var(--cc)"/>
+<g id="cf-plt"><use href="#cf-c1" fill="url(#cf-pleat)"/><use href="#cf-c2" fill="url(#cf-pleat)"/><use href="#cf-c3" fill="url(#cf-pleat)"/><use href="#cf-c4" fill="url(#cf-pleat)"/></g>
+<g id="cf-qlt"><use href="#cf-c1" fill="url(#cf-quilt)"/><use href="#cf-c2" fill="url(#cf-quilt)"/><use href="#cf-c3" fill="url(#cf-quilt)"/><use href="#cf-c4" fill="url(#cf-quilt)"/></g>
+<use href="#cf-c1" fill="url(#cf-shade)"/><use href="#cf-c2" fill="url(#cf-shade)"/><use href="#cf-c3" fill="url(#cf-shade)"/><use href="#cf-c4" fill="url(#cf-shade)"/>
+<use href="#cf-c1" fill="none" stroke="#fff" stroke-opacity=".13" stroke-width="2"/><use href="#cf-c2" fill="none" stroke="#fff" stroke-opacity=".13" stroke-width="2"/><use href="#cf-c3" fill="none" stroke="#fff" stroke-opacity=".13" stroke-width="2"/><use href="#cf-c4" fill="none" stroke="#fff" stroke-opacity=".13" stroke-width="2"/>
+</g></g>
+<g id="cf-l2"><g id="cf-wheel" transform="rotate(-6 250 430)">
+<path d="M158 424L242 426V440L158 438Z" fill="#17181b"/><path d="M342 424L258 426V440L342 438Z" fill="#17181b"/><path d="M243 436H257L259 482H241Z" fill="#17181b"/>
+<ellipse cx="250" cy="430" rx="96" ry="56" fill="none" stroke-width="22" style="stroke:var(--wc)"/>
+<ellipse cx="250" cy="430" rx="96" ry="56" fill="none" stroke-width="22" stroke="url(#cf-shade)"/>
+<ellipse cx="250" cy="430" rx="107" ry="67" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="2"/>
+<ellipse id="cf-stitch" cx="250" cy="430" rx="96" ry="56" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.6" stroke-dasharray="6 5"/>
+<ellipse cx="250" cy="430" rx="27" ry="17" fill="#101113" stroke="#2b2d33" stroke-width="2"/><ellipse cx="250" cy="430" rx="14" ry="8" fill="none" stroke="#F2B705" stroke-width="2.4"/>
+</g></g>
+<g id="cf-l3">${CF2D_SEAT('L')}<g transform="translate(320 0)">${CF2D_SEAT('R')}</g></g>
+</g>
+</svg>`;
+function cfgSvg(cv){
+  const host=cv.parentNode;if(!host||host.querySelector('.cf2d'))return;
+  cv.style.display='none';
+  const d=document.createElement('div');d.className='cf2d';d.innerHTML=CF2D;host.insertBefore(d,cv.nextSibling);
+  const b=document.createElement('div');b.className='cf2b';b.textContent='Lite 2D preview';host.appendChild(b);
+  const sv=d.querySelector('#cf-svg'),g=id=>d.querySelector('#'+id),w=g('cf-w'),sc=g('cf-sc'),LAY=[[g('cf-lf'),1],[g('cf-lc'),1.1],[g('cf-l2'),1.45],[g('cf-l3'),2]];
+  const VW={ov:[400,350,1],drv:[250,425,2.2],sd:[110,235,2.4],fr:[400,610,1.6]};
+  let cur=[400,350,1,0],tg=[400,350,1,0],raf=0,drag=0,lx=0,last=0;
+  const show=(el,on)=>{if(el)el.style.display=on?'':'none'};
+  function up(){
+    if(!document.body.contains(d)){CF=null;return}
+    const on=k=>!!cfOn(k),st=sv.style;
+    st.setProperty('--wc',on('steer')?cfHex(cfC('steer')):'#2b2c30');
+    st.setProperty('--sc',on('seat')?cfHex(cfC('seat')):'#2c2d32');
+    st.setProperty('--cc',cfHex(cfC('curt')));
+    st.setProperty('--mc',cfHex(cfC('mat')));
+    st.setProperty('--dc',cfHex(cfC('dash')));
+    show(g('cf-stitch'),on('steer'));
+    d.querySelectorAll('.cf-mesh').forEach(e=>show(e,on('seat')));
+    show(g('cf-curt'),on('curt'));
+    const qu=cfV('curt')==4;show(g('cf-qlt'),qu);show(g('cf-plt'),!qu);
+    show(g('cf-mats'),on('mat'));show(g('cf-dm'),on('dash'));
+  }
+  function paint(){
+    const x=cur[0],y=cur[1],k=cur[2],yaw=cur[3];
+    w.setAttribute('transform','translate('+(400-x*k).toFixed(2)+' '+(350-y*k).toFixed(2)+') scale('+k.toFixed(4)+')');
+    LAY.forEach(l=>l[0].setAttribute('transform','translate('+(yaw*34*l[1]).toFixed(2)+' 0)'));
+    sc.setAttribute('transform','translate('+(-yaw*34*.7).toFixed(2)+' 0)');
+  }
+  function step(now){
+    raf=0;
+    if(!document.body.contains(d)){CF=null;return}
+    const dt=last?Math.min(.1,(now-last)/1000):.016;last=now;
+    const k=1-Math.pow(.002,dt);let mv=0;
+    for(let i=0;i<4;i++){const df=tg[i]-cur[i],e=i==2?.002:i==3?.001:.3;if(Math.abs(df)>e){cur[i]+=df*k;mv=1}else cur[i]=tg[i]}
+    paint();
+    if(mv||drag)raf=requestAnimationFrame(step);else last=0;
+  }
+  function kick(){if(!raf){last=0;raf=requestAnimationFrame(step)}}
+  d.addEventListener('pointerdown',e=>{drag=1;lx=e.clientX;try{d.setPointerCapture(e.pointerId)}catch(_){}});
+  const end=()=>{drag=0};d.addEventListener('pointerup',end);d.addEventListener('pointercancel',end);
+  d.addEventListener('pointermove',e=>{if(!drag)return;tg[3]=Math.max(-1,Math.min(1,tg[3]+(e.clientX-lx)*.006));lx=e.clientX;kick()});
+  CF={up,view(n){const v=VW[n];if(!v)return;tg=[v[0],v[1],v[2],0];kick()}};
+  paint();up();
+  if(s.lang=='ja')tr();
+}
+
+function buildCfg(cv){let R;try{R=new THREE.WebGLRenderer({canvas:cv,antialias:true})}catch(x){cfgSvg(cv);return}
+R.setPixelRatio(Math.min(devicePixelRatio,2));const S=new THREE.Scene();S.background=new THREE.Color(0x0b0c0e);S.fog=new THREE.Fog(0x0b0c0e,10,22);const C=new THREE.PerspectiveCamera(50,1,.1,40);
+S.add(new THREE.HemisphereLight(0xd0dcf0,0x2a2a30,1.5));const dl=new THREE.DirectionalLight(0xfff0d8,1.5);dl.position.set(3,5,4);S.add(dl);const pl=new THREE.PointLight(0xF2B705,.7,8);pl.position.set(0,.6,-1.2);S.add(pl);
+const M=(c,r,m,o)=>new THREE.MeshStandardMaterial(Object.assign({color:c,roughness:r,metalness:m||0},o||{}));
+const mesh=(g,m,x,y,z,p)=>{const o=new THREE.Mesh(g,m);o.position.set(x,y,z);(p||S).add(o);return o},Bx=(w,h,d,m,x,y,z,p)=>mesh(new THREE.BoxGeometry(w,h,d),m,x,y,z,p);
+const tex=(f,rx,ry)=>{const q=document.createElement('canvas');q.width=q.height=64;const g=q.getContext('2d');g.fillStyle='#000';g.fillRect(0,0,64,64);f(g);const t=new THREE.CanvasTexture(q);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(rx,ry);return t};
+const lat=tex(g=>{g.strokeStyle='#fff';g.lineWidth=3;g.beginPath();g.moveTo(0,0);g.lineTo(64,64);g.moveTo(64,0);g.lineTo(0,64);g.stroke()},6,6),rib=tex(g=>{g.fillStyle='#fff';g.fillRect(0,0,64,24)},1,10);
+const mSt=M(0x1a1a1c,.55,.05),mCu=M(0x1a1a1c,.95,0,{side:THREE.DoubleSide}),mSe=M(0x1a1a1c,.9,0,{bumpMap:lat,bumpScale:.35}),mMt=M(0x1a1a1c,.95,0,{bumpMap:rib,bumpScale:2}),mDs=M(0x1a1a1c,1),stSt=M(0x2b2b2e,.6),stSe=M(0x34353a,.95);
+const dk=M(0x17181b,.6,.2),pn=M(0x202226,.8),gl=M(0x9fc4e8,.1,.6,{transparent:true,opacity:.13,side:THREE.DoubleSide}),am=M(0xF2B705,.4,.3,{emissive:0x4a3500});
+Bx(4.2,.1,4.4,M(0x121316,.95),0,-1,-.1);Bx(.1,1.15,4.4,pn,-2.1,-.38,-.1);Bx(4.2,2.6,.1,pn,0,.3,2.1);Bx(.1,.12,4.4,dk,-2.1,1.55,-.1);Bx(.12,1.5,.12,dk,-2.1,.8,-2.2);Bx(.12,1.5,.12,dk,2.1,.8,-2.2);Bx(4.4,.1,.12,dk,0,1.55,-2.2);
+mesh(new THREE.PlaneGeometry(4.1,1.55),gl,0,.8,-2.2);mesh(new THREE.PlaneGeometry(4.3,1.3),gl,-2.1,.9,-.1).rotation.y=Math.PI/2;
+Bx(4.2,.75,1.1,dk,0,-.58,-1.75);Bx(4.2,.12,1.15,pn,0,-.15,-1.78);Bx(1.1,.4,.12,M(0x08090a,.3,.5),-.9,-.05,-1.25);
+for(let i=0;i<2;i++)mesh(new THREE.CylinderGeometry(.16,.16,.03,24),M(0x0b0b0c,.2,.6,{emissive:0x2a2000}),-1.1+i*.4,-.05,-1.18).rotation.x=Math.PI/2;
+for(let i=0;i<3;i++)Bx(.28,.06,.04,am,.5+i*.4,-.2,-1.19);
+const wg=new THREE.Group();wg.position.set(-.9,.12,-1.0);wg.rotation.x=-1.0;S.add(wg);const rim=mesh(new THREE.TorusGeometry(.5,.085,18,48),mSt,0,0,0,wg);mesh(new THREE.CylinderGeometry(.14,.14,.12,24),dk,0,0,0,wg).rotation.x=Math.PI/2;
+[0,2.1,4.2].forEach(a=>{const b=Bx(.5,.06,.05,dk,0,0,0,wg);b.rotation.z=a;b.position.set(Math.cos(a)*.25,Math.sin(a)*.25,0)});mesh(new THREE.CylinderGeometry(.07,.07,.9,12),dk,-.9,-.3,-1.45).rotation.x=-.6;
+const seats=[];[-.9,.9].forEach(x=>{const g=new THREE.Group();g.position.x=x;S.add(g);const pt=(w,h,d,xx,yy,zz,rx)=>{const o=mesh(new THREE.BoxGeometry(w,h,d),mSe,xx,yy,zz,g);if(rx)o.rotation.x=rx;seats.push(o)};pt(1.2,.28,1.1,0,-.68,.3);pt(1.15,1.45,.3,0,-.02,.95,.14);pt(.7,.36,.22,0,.9,1.08,.14);pt(.14,.3,1,-.6,-.52,.3);pt(.14,.3,1,.6,-.52,.3);Bx(.5,.4,.6,dk,0,-.9,.3,g)});
+const matG=new THREE.Group();S.add(matG);[-.9,.9].forEach(x=>mesh(new THREE.BoxGeometry(1.2,.03,1.5),mMt,x,-.935,-.65,matG));const dash=Bx(3.5,.03,.9,mDs,0,-.115,-1.78);
+const panel=(w,h,f,a)=>{const g=new THREE.PlaneGeometry(w,h,f*6,1),p=g.attributes.position;for(let i=0;i<p.count;i++)p.setZ(i,Math.sin(p.getX(i)/w*f*6.283)*a);g.computeVertexNormals();return g};
+const curG=new THREE.Group();S.add(curG);const cu=(w,h,f,a,x,y,z,ry)=>{const m=mesh(panel(w,h,f,a),mCu,x,y,z,curG);m.rotation.y=ry||0};
+cu(1.0,1.45,5,.06,-1.55,.8,-2.12);cu(1.0,1.45,5,.06,1.55,.8,-2.12);cu(1.1,1.2,5,.06,-2.0,.9,-1.5,Math.PI/2);cu(1.1,1.2,5,.06,-2.0,.9,1.3,Math.PI/2);cu(4.0,2.0,14,.07,0,.2,1.95);
+function up(){const c=s.cfg,on=k=>!!cfOn(k);mSt.color.setHex(HEX[cfC('steer')]);mCu.color.setHex(HEX[cfC('curt')]);mSe.color.setHex(HEX[cfC('seat')]);mMt.color.setHex(HEX[cfC('mat')]);mDs.color.setHex(HEX[cfC('dash')]);
+rim.material=on('steer')?mSt:stSt;seats.forEach(o=>o.material=on('seat')?mSe:stSe);curG.visible=on('curt');matG.visible=on('mat');dash.visible=on('dash');const q=cfV('curt')==4;curG.children.forEach(m=>m.scale.z=q?.3:1);mCu.bumpMap=q?lat:null;mCu.bumpScale=.4;mCu.needsUpdate=true}
+const V={drv:{p:[-.9,.6,.7],t:[-.9,-.15,-1.6],f:78},ov:{p:[4.6,1.9,-2.0],t:[-.3,-.2,.3],f:50},sd:{p:[-4.4,.7,.6],t:[-1,0,-.2]},fr:{p:[.8,.5,-4.8],t:[0,.1,-1]}};
+let g=V.ov,cp=g.p.slice(),ct=g.t.slice(),yaw=0,drag=0,lx=0;CF={up,view(n){g=V[n];yaw=0}};up();
+cv.addEventListener('pointerdown',e=>{drag=1;lx=e.clientX});cv.addEventListener('pointerup',()=>drag=0);cv.addEventListener('pointerleave',()=>drag=0);cv.addEventListener('pointermove',e=>{if(drag){yaw-=(e.clientX-lx)*.006;lx=e.clientX}});
+function fr(){if(!document.body.contains(cv)){R.dispose();CF=null;return}requestAnimationFrame(fr);const w=cv.clientWidth,h=cv.clientHeight,pr=R.getPixelRatio();if(w&&(cv.width!=Math.round(w*pr)||cv.height!=Math.round(h*pr))){R.setSize(w,h,false);C.aspect=w/h;C.updateProjectionMatrix()}
+const nw=performance.now(),k=1-Math.pow(.002,Math.min(.1,(nw-(fr.l||nw))/1000));fr.l=nw;C.fov+=((g.f||50)-C.fov)*k;C.updateProjectionMatrix();for(let i=0;i<3;i++){cp[i]+=(g.p[i]-cp[i])*k;ct[i]+=(g.t[i]-ct[i])*k}if(!drag&&g===V.ov)yaw+=Math.sin(performance.now()/3000)*.0008;
+const ox=cp[0]-ct[0],oz=cp[2]-ct[2],cs=Math.cos(yaw),sn=Math.sin(yaw);C.position.set(ct[0]+ox*cs-oz*sn,cp[1],ct[2]+ox*sn+oz*cs);C.lookAt(ct[0],ct[1],ct[2]);R.render(S,C)}fr()}
+const JA={'Free shipping over ¥10,000 · Made in Himeji since 1947':'1万円以上で送料無料 · 1947年創業・姫路製','Stores':'店舗','Help':'ヘルプ','Shop':'ショップ','3D cab builder':'3Dキャビンビルダー','Custom order':'オーダーメイド','Our story':'私たちの歩み','Design system':'デザインシステム','UX notes':'UXノート','Account':'アカウント','SINCE 1947 · HIMEJI, JAPAN':'1947年創業 · 姫路','Make the cab':'キャビンを','feel like yours.':'自分の城に。','Shop all parts':'すべてのパーツ','Order made-to-measure':'オーダーメイドを依頼','Truck make':'メーカー','Size class':'サイズ区分','Find parts that fit':'適合パーツを探す','Light (kei–2t)':'小型(軽〜2t)','Medium (4t)':'中型(4t)','Large (10t+)':'大型(10t〜)','Fit guaranteed':'適合保証','Or free exchange':'不適合は無料交換','Own workshop':'自社工房','Sewn in Himeji':'姫路で縫製','Ships in 2 days':'2営業日で発送','Free over ¥10,000':'1万円以上で送料無料','6 stores':'全6店舗','Hyogo, Nara, Saga':'兵庫・奈良・佐賀','Measured in Himeji':'姫路で採寸','Sewn by hand':'職人の手縫い','Fitted to your cab':'あなたのキャビンにぴったり','Shop now':'今すぐ購入','Shop by category':'カテゴリーから探す','View all':'すべて見る','Best sellers':'人気商品','See more':'もっと見る','Drivers on camera':'ドライバーの声(動画)','Add driver video':'動画を追加','Steering covers':'ハンドルカバー','Curtains':'カーテン','Seat covers':'シートカバー','Floor mats':'フロアマット','Dash mats':'ダッシュマット','Cab accessories':'キャビン小物','Don’t see your cab?':'お探しのキャビンがない?','Start a custom order':'オーダーを始める','Add to bag':'バッグに追加','Buy now':'今すぐ購入','Fits':'適合','Size guide':'サイズガイド','Driver reviews':'ドライバーレビュー','Write a review':'レビューを書く','Submit review':'送信','You may also need':'こちらもおすすめ','Your bag is empty':'バッグは空です','Start shopping':'買い物を始める','Checkout':'お会計','Subtotal':'小計','Shipping':'送料','Total':'合計','Remove':'削除','← Continue shopping':'← 買い物を続ける','Place order':'注文を確定','Order summary':'ご注文内容','Full name':'お名前','Email':'メール','Address':'住所','Postcode':'郵便番号','Phone':'電話番号','Payment':'お支払い','Free':'無料','Join':'登録','Company':'会社情報','Support':'サポート','Contact':'お問い合わせ','Returns':'返品','Privacy':'プライバシー','Thank you.':'ありがとうございます。','Built for the long road.':'長い道のりのために。','Enter the site':'サイトに入る','Shop parts now':'パーツを見る','Skip ›':'スキップ ›','Leather Steering Cover':'レザーハンドルカバー','Grip Wool Steering Cover':'ウールハンドルカバー','Blackout Cab Curtain Set':'遮光カーテンセット','Quilted Cab Curtain':'キルティングカーテン','Mesh Seat Cover Pair':'メッシュシートカバー','Heavy-Duty Floor Mat':'ヘビーデューティーマット','Suede Dash Mat':'スエードダッシュマット','Cab Tissue & Cup Holder':'ティッシュ&カップホルダー'};
+Object.assign(JA,{
+'Free shipping over ¥10,000 · Made in Himeji since 1947':'1万円以上のご注文で送料無料 ・ 姫路の自社工房で1947年から',
+'Stores':'店舗案内','Help':'ご利用ガイド','Shop':'商品一覧','3D cab builder':'3Dキャビンシミュレーター','Custom order':'オーダーメイド','Our story':'ターンについて','Account':'マイページ',
+'Search parts…':'商品を検索','Search':'検索','Wishlist':'お気に入り',
+'SINCE 1947 · HIMEJI, JAPAN':'1947年創業 ・ 兵庫県姫路市',
+'Make the cab':'いつもの運転席を、','feel like yours.':'自分だけの空間に。',
+'Steering covers, curtains and seat covers sewn by our own craftspeople, for trucks from kei to 10-tonne.':'ハンドルカバー、カーテン、シートカバーを姫路の自社工房で縫製。軽トラから10tクラスまで対応します。',
+'Shop all parts':'商品をすべて見る','Order made-to-measure':'オーダーメイドで注文',
+'Truck make':'車両メーカー','Size class':'サイズ区分','Find parts that fit':'対応パーツを検索',
+'Isuzu':'いすゞ','Hino':'日野','Mitsubishi Fuso':'三菱ふそう','UD Trucks':'UDトラックス','Toyota':'トヨタ','Mazda':'マツダ',
+'Light (kei–2t)':'小型（軽〜2t）','Medium (4t)':'中型（4t）','Large (10t+)':'大型（10t以上）',
+'Fit guaranteed':'サイズ保証','Or free exchange':'合わなければ無料交換','Own workshop':'自社工房','Sewn in Himeji':'姫路で縫製','Ships in 2 days':'最短2営業日で発送','Free over ¥10,000':'1万円以上で送料無料','6 stores':'全6店舗','Hyogo, Nara, Saga':'兵庫・奈良・佐賀',
+'Measured in Himeji':'姫路で採寸','Sewn by hand':'ひと針ずつ手縫い','Fitted to your cab':'車種ごとの専用設計',
+'Every cab model is cut from our own patterns.':'車種ごとに起こした自社の型紙で、ひとつずつ裁断しています。',
+'Shop now':'今すぐ見る','Shop by category':'カテゴリから探す','View all':'一覧を見る','Best sellers':'人気ランキング','See more':'もっと見る',
+'Drivers on camera':'ドライバーの声','Add driver video':'動画を投稿','Tap a tile to add your own customer clip':'タイルをタップして、あなたの動画を追加できます',
+'Kenji · Isuzu Giga':'健二さん ・ いすゞ ギガ','Osaka to Tokyo, 3,000 km a month':'大阪〜東京、月3,000km走行',
+'Mika · Hino Ranger':'美香さん ・ 日野 レンジャー','Night runs, Kobe to Nagoya':'神戸〜名古屋の夜間便',
+'Daisuke · UD Quon':'大輔さん ・ UD クオン','Long haul, Kyushu to Hokkaido':'九州〜北海道の長距離',
+'Steering covers':'ハンドルカバー','Curtains':'カーテン','Seat covers':'シートカバー','Floor mats':'フロアマット','Dash mats':'ダッシュマット','Cab accessories':'車内小物',
+'Don’t see your cab?':'お使いの車種が見つかりませんか？','Send us your truck model and colours. Our craftspeople will cut it to order.':'車種とお好みの色をお知らせください。職人が一点ずつ採寸・裁断いたします。','Start a custom order':'オーダーメイドを相談する',
+'Truck cabin goods, cut and sewn in our own Himeji workshop. Light trucks to heavy haulers.':'トラックのキャビン用品を、姫路の自社工房で裁断から縫製まで。軽トラから大型車まで幅広く対応します。',
+'Company':'会社情報','Support':'サポート','Contact':'お問い合わせ','Returns':'返品・交換','Privacy':'プライバシーポリシー','Join':'登録する','© TURN Co., Ltd.':'© 株式会社ターン','Email for new drops':'新商品のお知らせ（メールアドレス）','Toggle edit mode':'編集モード切替','Added to bag':'バッグに追加しました','Saved to wishlist':'お気に入りに保存しました','Removed from wishlist':'お気に入りから外しました',
+'Built for the long road.':'走り続ける、その一日のために。','Cab goods sewn by our own craftspeople, for every driver who calls the cab home.':'運転席は仕事場であり、暮らしの場。その毎日に寄り添うキャビン用品を、自社の職人が縫い上げます。','Enter the site':'サイトを見る','Shop parts now':'商品を見る','Skip ›':'スキップ ›',
+'Home':'ホーム','/ Shop':'/ 商品一覧','All parts':'すべての商品','Sort':'並び替え','Featured':'おすすめ順','Price: low to high':'価格の安い順','Price: high to low':'価格の高い順','All':'すべて',
+'tax incl.':'税込','Size guide':'サイズの目安','Add to bag':'バッグに入れる','Buy now':'今すぐ購入','♡ Save to wishlist':'♡ お気に入りに追加','Fits':'対応車種',
+'Ships in 2 working days · Free over ¥10,000 · 30-day returns.':'ご注文から2営業日以内に発送 ・ 1万円以上で送料無料 ・ 30日以内なら返品OK',
+'Need another size? Order made-to-measure':'サイズが合わない場合は、オーダーメイドも承ります','Driver reviews':'ドライバーのレビュー','Write a review':'レビューを書く','Submit review':'投稿する','Name':'お名前（ニックネーム可）','Rating':'評価','Your review':'レビュー内容','You may also need':'あわせて買いたい商品',
+'Leather Steering Cover':'レザーハンドルカバー','Grip Wool Steering Cover':'ウールグリップ ハンドルカバー','Blackout Cab Curtain Set':'遮光カーテンセット','Quilted Cab Curtain':'キルティングカーテン','Mesh Seat Cover Pair':'メッシュシートカバー（運転席・助手席）','Heavy-Duty Floor Mat':'強力フロアマット','Suede Dash Mat':'スエード調ダッシュマット','Cab Tissue & Cup Holder':'ティッシュ＆カップホルダー',
+'Hand-stitched synthetic leather with a non-slip inner lining.':'手縫いの合成皮革に、すべりにくい裏地付き。握りやすく、長時間の運転でも手になじみます。',
+'Warm in winter, breathable in summer. Machine washable.':'冬はあたたかく、夏はさらっと。洗濯機で丸洗いできます。',
+'Windscreen, side and rear panels with magnetic edges for rest stops.':'フロント・サイド・リアの全面に対応。マグネット留めで、休憩中もすぐ閉じられます。',
+'Insulated quilting. Cut to your cab model in our workshop.':'断熱キルティング生地。ご指定の車種に合わせて、工房で裁断します。',
+'Airflow mesh for long hauls. Fits driver and passenger seats.':'通気性のよいメッシュ生地で、長距離でも蒸れにくい。運転席・助手席のペアセットです。',
+'Raised edges hold water and mud. Trim to fit.':'フチが立ち上がっていて、水や泥をしっかりキャッチ。お好みのサイズにカットできます。',
+'Cuts glare and keeps small items from sliding.':'光の反射を抑え、小物のすべり落ちも防ぎます。',
+'Clips to the visor or door pocket. No tools.':'サンバイザーやドアポケットにクリップで取り付け。工具は不要です。',
+'Night drives feel calmer. The quality is obvious.':'夜の運転が落ち着きます。作りの良さは一目でわかります。','Exactly my cab. Worth every yen.':'うちのキャビンにぴったり。値段以上です。','Good grip and easy to wash.':'握りやすくて、洗うのも簡単です。','Third set I have bought. Not going elsewhere.':'これで3セット目。もう他では買いません。','Fitted first time. The stitching beats anything off the shelf.':'一発でぴったり。縫製は市販品とは別物です。','Looks great, arrived in two days.':'見た目も良く、2日で届きました。',
+'You’ve got free shipping':'送料無料の対象です','Your bag is empty':'バッグは空です','Start shopping':'買い物をはじめる','Checkout':'レジに進む','Subtotal':'小計','Shipping':'送料','Total':'合計','Remove':'削除','← Continue shopping':'← 買い物を続ける',
+'← Back to bag':'← バッグに戻る','Order summary':'ご注文内容','Full name':'お名前','Email':'メールアドレス','Address':'ご住所','Postcode':'郵便番号','Phone':'電話番号','Payment':'お支払い方法','Credit card':'クレジットカード','Bank transfer':'銀行振込','Pay at store':'店舗でお支払い','Place order':'注文を確定する','Free':'無料',
+'Thank you.':'ご注文ありがとうございます。','Order':'ご注文番号','is confirmed. A receipt is on its way to your inbox.':'の注文を承りました。ご登録のメールアドレスに確認メールをお送りします。','Back to home':'ホームへ戻る','Track order':'配送状況を確認',
+'Made-to-measure':'オーダーメイド','Tell us the cab and the look. A craftsperson replies within 2 working days.':'車種とご希望の仕上がりをお聞かせください。職人が2営業日以内にご返信します。','Model & year':'車種・年式','Item':'ご希望の商品','Material':'素材','Leather':'レザー','Suede':'スエード調','Wool':'ウール','Quilted fabric':'キルティング生地','Photo of your cab (optional)':'運転席の写真（任意）','Notes':'ご要望・備考','Send request':'相談内容を送る','Request sent. We’ll reply in 2 working days.':'送信しました。2営業日以内にご返信します。',
+'Over 75 years, one thing: the truck cab.':'75年以上、トラックの運転席ひとすじ。','TURN began in 1947 and has stayed focused on making a driver’s long working day more comfortable. Every cover and curtain is made in our own Himeji workshop in small batches.':'ターンは1947年の創業以来、ドライバーの長い一日を少しでも快適にすることだけを考えてきました。カバーもカーテンも、すべて姫路の自社工房で少量ずつ丁寧に仕立てています。',
+'Founded in Hyogo':'兵庫で創業','Own factory':'自社工場','Craftspeople sew in-house':'縫製はすべて社内の職人が担当','Dekotora':'デコトラ','Spreading Japanese truck culture worldwide':'日本のトラック文化を、世界へ','Visit a store':'店舗を探す',
+'Our stores':'店舗のご案内','Head office & sewing factory':'本社・縫製工場','Himeji, Hyogo':'兵庫県姫路市','Weekdays 8:30–17:30':'平日 8:30〜17:30','Daily 9:00–19:00':'毎日 9:00〜19:00','Ako store':'赤穂店','Ako, Hyogo':'兵庫県赤穂市','Wadayama store':'和田山店','Asago, Hyogo':'兵庫県朝来市','Takasago store':'高砂店','Takasago, Hyogo':'兵庫県高砂市','Nara Hari store':'奈良針店','Nara':'奈良県','Saga Tosu store':'佐賀鳥栖店','Tosu, Saga':'佐賀県鳥栖市','← All stores':'← 店舗一覧','Get directions':'アクセス・地図を見る','← Home':'← ホーム','Continue shopping':'買い物を続ける',
+'Nothing saved yet':'まだ保存した商品はありません','Tap the heart on any part to save it.':'気になる商品の♡をタップすると、ここに保存されます。',
+'Build your cab':'キャビンをカスタマイズ','Choose your truck size, pick what you want, and see it in 3D. Add the whole set to your bag in one tap.':'車両のサイズを選んでパーツを組み合わせると、仕上がりを3Dで確認できます。そのままセットでバッグに入れられます。',
+'Drag to rotate':'ドラッグで回転','Overview':'全体','Driver’s seat':'運転席から','Side window':'サイドウィンドウ','From the front':'正面から','1 · Your truck size':'① 車両サイズを選ぶ','Only parts that fit this size are shown. Fit guaranteed or free exchange.':'選んだサイズに対応する商品だけを表示しています。合わない場合は無料で交換します。','2 · Pick your parts':'② パーツを選ぶ',
+'Steering cover':'ハンドルカバー','Added ✓':'追加済み ✓','Add':'追加','Grip Wool':'ウールグリップ','Cab curtains':'キャビンカーテン','Blackout':'遮光','Quilted':'キルティング','Dash mat':'ダッシュマット','Your set':'選んだセット','Free shipping included · ships in 2 days':'送料無料 ・ 2営業日で発送','Add set to bag':'セットをバッグに入れる','Reset':'リセット','Nothing selected yet.':'まだ選ばれていません。'});
+Object.assign(JA,{'Lite 2D preview':'かんたん2Dプレビュー','Cab interior preview':'キャビン内装プレビュー'});const COL={Black:'ブラック',Grey:'グレー',Charcoal:'チャコール',Amber:'アンバー',Red:'レッド',Purple:'パープル',Gold:'ゴールド',Blue:'ブルー'},NM={'Daisuke H.':'大輔さん','Aki M.':'亜紀さん','Ryo N.':'涼さん','Sato K.':'佐藤さん','Kenji T.':'健二さん','Mika S.':'美香さん'},VH={'UD Quon':'UDクオン','Fuso Canter':'ふそう キャンター','Toyota Dyna':'トヨタ ダイナ','Isuzu Forward':'いすゞ フォワード','Isuzu Giga':'いすゞ ギガ','Hino Ranger':'日野 レンジャー'};
+function J(k){let m;if(JA[k])return JA[k];if(COL[k])return COL[k];
+if(m=k.match(/^Bag \((\d+)\)$/))return'バッグ（'+m[1]+'）';if(m=k.match(/^Your bag \((\d+)\)$/))return'バッグの中身（'+m[1]+'点）';if(m=k.match(/^Wishlist \((\d+)\)$/))return'お気に入り（'+m[1]+'）';
+if(m=k.match(/^(\d+) results$/))return m[1]+'件';if(m=k.match(/^(\d+) reviews?( · sample data)?$/))return'レビュー'+m[1]+'件'+(m[2]?' ・ サンプルデータ':'');
+if((m=k.match(/^\/ (.+)$/))&&JA[m[1]])return'/ '+JA[m[1]];if(m=k.match(/^Colour: (.+)$/))return'カラー：'+(COL[m[1]]||m[1]);if(m=k.match(/^Tel (.+)$/))return'TEL '+m[1];
+if(m=k.match(/^(★+☆*) (.+?) · (.+)$/))return m[1]+' '+(NM[m[2]]||m[2])+'（'+(VH[m[3]]||m[3])+'）';
+if(m=k.match(/^(.+) × (\d+)$/))return(JA[m[1]]||m[1])+' × '+m[2];
+if(m=k.match(/^(.+) trucks\.$/))return m[1].split(', ').map(x=>JA[x]||x).join('・')+'に対応';
+if(m=k.match(/^Not made for (.+) trucks$/))return(JA[m[1]]||m[1])+'には対応していません';
+if(m=k.match(/^¥([\d,]+) (?:more )?(?:for|to|away from) free shipping$/))return'あと¥'+m[1]+'で送料無料';
+if(m=k.match(/^Placeholder copy for/))return'このページの文章は準備中です。';
+if(k.indexOf(' · ')>0){const b=k.split(' · ').map(x=>JA[x]||COL[x]||(/^¥/.test(x)?x:null));if(b.every(Boolean))return b.join(' ・ ')}return null}
+function tr(){const ja=s.lang=='ja',w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);document.documentElement.lang=ja?'ja':'en';let n,m;
+while(n=w.nextNode()){if(n.parentNode.closest('script,style'))continue;const v=n._o||(n._o=n.nodeValue),k=v.trim(),j=ja?J(k):null;n.nodeValue=j?v.replace(k,j):v}
+document.querySelectorAll('[placeholder],[aria-label],[title]').forEach(e=>['placeholder','aria-label','title'].forEach(a=>{if(!e.hasAttribute(a))return;const o=e['_o'+a]||(e['_o'+a]=e.getAttribute(a));let j=ja?J(o):null;if(ja&&!j&&(m=o.match(/^Quick add (.+)$/)))j=(JA[m[1]]||m[1])+'をバッグに追加';e.setAttribute(a,j||o)}))}
+{const _t=toast;toast=function(m){_t(s.lang=='ja'?(J(m)||m):m)}}
+function post(){const app=document.getElementById('app'),k=s.page+':'+s.arg,ch=post.k!==k;post.k=k;if(ch)app.classList.add('pg');if(s.page=='config'){const cv=document.getElementById('cfg');if(cv){if(!glOK())cfgSvg(cv);else lt(ok=>{const c2=document.getElementById('cfg');if(!c2)return;if(ok)buildCfg(c2);else cfgSvg(c2)})}}storyTick();tr();if(ch)reveal()}
+function render(){chrome();$('#app').classList.remove('pg');$('#app').innerHTML=pages[s.page]();post();const a=$('#tacc');if(a){a.oninput=e=>{document.documentElement.style.setProperty('--acc',e.target.value)};$('#trad').oninput=e=>document.documentElement.style.setProperty('--r',e.target.value+'px')}}
+document.addEventListener('click',e=>{const Cg=e.target.closest('[data-cfg]');if(Cg){const[a,b]=Cg.dataset.cfg.split('|');s.cfg[a]=b;paintCfg();document.querySelectorAll('[data-cfg]').forEach(x=>{const q=x.dataset.cfg.split('|');x.classList.toggle('on',s.cfg[q[0]]==q[1])});return}const W=e.target.closest('[data-wish]');if(W){e.stopPropagation();const i=+W.dataset.wish,k=s.wish.indexOf(i);k<0?s.wish.push(i):s.wish.splice(k,1);toast(k<0?'Saved to wishlist':'Removed from wishlist');render();return}const A=e.target.closest('[data-add]');if(A){e.stopPropagation();add(+A.dataset.add);return}
+const a=e.target.closest('[data-act]');if(a){const[k,v]=a.dataset.act.split(':');const b=s.bag[+v];
+if(k=='col'){s.col=v}else if(k=='q+')s.qty++;else if(k=='q-')s.qty=Math.max(1,s.qty-1);else if(k=='addp'){add(+s.arg,s.col,s.qty);return}else if(k=='buy'){add(+s.arg,s.col,s.qty);go('checkout');return}
+else if(k=='bq+')b.q++;else if(k=='bq-')b.q=Math.max(1,b.q-1);else if(k=='rm'){s.bag.splice(+v,1)}
+else if(k=='clrveh')s.veh=null;else if(k=='clrq')s.q='',$('#q').value='';else if(k=='reset'){s.veh=null;s.q='';s.cat='all';$('#q').value=''}
+else if(k=='toast'){toast(a.dataset.act.slice(6));return}else if(k=='edit'){const on=document.designMode!='on';document.designMode=on?'on':'off';toast(on?'Edit mode on – click any text':'Edit mode off');return}
+else if(k=='lang'){s.lang=s.lang=='ja'?'en':'ja'}else if(k=='cfgadd'){cfgAdd();return}else if(k=='light'||k=='dark'){document.documentElement.dataset.theme=k;return}
+render();return}
+const g=e.target.closest('[data-go]');if(g){const[p,...r]=g.dataset.go.split(':');const x=r.join(':');if(p=='shop'){s.cat=x||'all'}if(p=='product'||p=='store')return go(p,+x);go(p,x||null)}});
+document.addEventListener('change',e=>{if(e.target.matches('[data-sort]')){s.sort=e.target.value;render()}if(e.target.matches('[data-vid]')){const f=e.target.files[0];if(f){s.vids[e.target.dataset.vid]=URL.createObjectURL(f);render()}}});
+$('#q').addEventListener('keydown',e=>{if(e.key=='Enter'){s.q=e.target.value.trim();s.cat='all';go('shop')}});
+document.addEventListener('submit',e=>{e.preventDefault();const f=e.target.dataset.form;
+if(f=='veh'){s.veh={m:$('#mk').value,k:$('#cl').value};s.cat='all';go('shop')}
+else if(f=='order'){const n='TRN-'+Math.floor(10000+Math.random()*89999);s.bag=[];go('done',n)}
+else if(f=='custom'){toast('Request sent. We’ll reply in 2 working days.');go('home')}
+else if(f=='signin'){toast('Signed in (demo)');go('home')}
+else if(f=='contact'){toast('Message sent');go('home')}
+else if(f=='news'){toast('Thanks for joining');e.target.reset()}else if(f=='review'){const d=new FormData(e.target);(s.rev[s.arg]=s.rev[s.arg]||[]).unshift({n:esc(d.get('n')),s:+d.get('r'),t:esc(d.get('t'))});toast('Thanks for your review');render()}});
+render();
+(function(){const ov=document.getElementById('intro');let raf,R;document.documentElement.style.overflow='hidden';
+function leave(to){cancelAnimationFrame(raf);document.documentElement.classList.add('rolled');ov.classList.add('out');document.documentElement.style.overflow='';setTimeout(()=>{ov.remove();R&&R.dispose()},750);if(to=='shop')go('shop')}
+ov.querySelectorAll('[data-leave]').forEach(b=>b.onclick=()=>leave(b.dataset.leave));
+function scene(){
+const cv=ov.querySelector('canvas'),x=cv.getContext('2d'),tc=document.createElement('canvas'),c=tc.getContext('2d'),nz=document.createElement('canvas');nz.width=nz.height=128;
+const nx=nz.getContext('2d'),im=nx.createImageData(128,128);for(let i=0;i<im.data.length;i+=4){const q=Math.random()*255;im.data[i]=im.data[i+1]=im.data[i+2]=q;im.data[i+3]=255}nx.putImageData(im,0,0);
+let W,H,u,gy,gl,D,t=0,off=0,last=performance.now(),LC=[],ST=[],BK=[],SK=[],smoke=[],sacc=0,seed=11;
+const rnd=()=>(seed=seed*16807%2147483647)/2147483647,mod=(a,m)=>((a%m)+m)%m,ease=k=>1-Math.pow(1-Math.min(1,Math.max(0,k)),3);
+const glow=(g,X,Y,r,rgb,a)=>{const q=g.createRadialGradient(X,Y,0,X,Y,r);q.addColorStop(0,'rgba('+rgb+','+a+')');q.addColorStop(1,'rgba('+rgb+',0)');g.fillStyle=q;g.fillRect(X-r,Y-r,r*2,r*2)};
+const lin=(g,x0,y0,x1,y1,st)=>{const q=g.createLinearGradient(x0,y0,x1,y1);st.forEach(s=>q.addColorStop(s[0],s[1]));return q};
+function mk(){seed=11;LC=[[.05,.28,.55,'#12141f',1],[.12,.16,.36,'#0b0c14',1],[.24,.08,.2,'#050508',0]].map(([sp,a,b,col,win])=>{const k=document.createElement('canvas'),g=k.getContext('2d');k.width=Math.ceil(W*1.6);k.height=Math.ceil(gy);let px=0;while(px<k.width){let w=u*(1.2+rnd()*2.6);w=Math.min(w,k.width-px);const h=gy*(a+rnd()*(b-a));g.fillStyle=col;g.fillRect(px,gy-h,w,h);if(win){for(let wx=px+u*.25;wx<px+w-u*.3;wx+=u*.42)for(let wy=gy-h+u*.3;wy<gy-u*.5;wy+=u*.5)if(rnd()<.28){g.fillStyle=rnd()<.8?'rgba(255,205,125,.55)':'rgba(120,220,255,.5)';g.fillRect(wx,wy,u*.14,u*.2)}if(rnd()<.35){const cl=rnd()<.5?'255,60,150':'60,220,255';g.fillStyle='rgb('+cl+')';g.fillRect(px+w*.2,gy-h+u*.6,w*.6,u*.35);glow(g,px+w*.5,gy-h+u*.78,u*1.6,cl,.35)}}px+=w}return[k,sp]});
+ST=[...Array(110)].map(()=>[rnd()*W,rnd()*gy*.8,rnd()*6,.5+rnd()*2,(1+rnd()*1.4)*D]);BK=[...Array(16)].map(()=>[rnd(),rnd()*.8,u*(.5+rnd()*1.4),['255,190,90','70,220,255','255,70,160'][rnd()*3|0],rnd()*6]);SK=[...Array(20)].map(()=>[rnd(),rnd(),.8+rnd()*1.8,u*(2+rnd()*5)]);
+tc.width=Math.ceil(15.6*u);tc.height=Math.ceil(8*u);gl=6.6*u}
+function sz(){D=Math.min(devicePixelRatio||1,window.__lite?1:1.5);W=cv.width=innerWidth*D|0;H=cv.height=innerHeight*D|0;const pt=W<H;u=Math.min(W*(pt?.92:.62)/14.6,H*(pt?.4:.52)/6.8);gy=H*(pt?.52:.6);mk()}
+function drawTruck(){c.clearRect(0,0,tc.width,tc.height);const X=a=>(a+.5)*u,Y=b=>gl-b*u,R=(a,b,w,h)=>c.fillRect(X(a),Y(b+h),w*u,h*u);
+const body=lin(c,0,Y(4.9),0,Y(1.2),[[0,'#3d404a'],[.06,'#1b1c22'],[.5,'#0b0c0f'],[1,'#040405']]),chrome=(y0,y1)=>lin(c,0,y0,0,y1,[[0,'#fff'],[.25,'#8e9198'],[.5,'#2a2b30'],[.75,'#d9dade'],[1,'#6c6e75']]);
+c.fillStyle='#060607';R(.1,.5,13.2,.85);c.fillStyle=chrome(Y(1.15),Y(.62));R(9.1,.62,1.9,.53);
+c.fillStyle=body;R(0,1.25,8.6,3.65);c.save();c.beginPath();c.rect(X(0),Y(4.9),8.6*u,3.65*u);c.clip();
+c.fillStyle='rgba(255,255,255,.06)';c.beginPath();c.moveTo(X(1),Y(4.9));c.lineTo(X(2.4),Y(4.9));c.lineTo(X(.9),Y(1.25));c.lineTo(X(-.5),Y(1.25));c.fill();c.fillStyle='rgba(255,255,255,.035)';c.beginPath();c.moveTo(X(4.6),Y(4.9));c.lineTo(X(5.3),Y(4.9));c.lineTo(X(3.8),Y(1.25));c.lineTo(X(3.1),Y(1.25));c.fill();
+for(let i=1;i<8;i++){c.fillStyle='rgba(255,255,255,.045)';R(i*1.075,1.25,.015,3.65)}
+const gold=lin(c,X(0),0,X(8.6),0,[[0,'#7a5410'],[.35,'#ffe08a'],[.6,'#c8921f'],[1,'#fff0b8']]);c.lineCap='round';c.strokeStyle=gold;c.lineWidth=.16*u;c.beginPath();c.moveTo(X(-.2),Y(2));c.bezierCurveTo(X(2.5),Y(1.5),X(5.5),Y(4.2),X(8.8),Y(4));c.stroke();c.strokeStyle='#d6232b';c.lineWidth=.05*u;c.beginPath();c.moveTo(X(-.2),Y(1.8));c.bezierCurveTo(X(2.5),Y(1.3),X(5.5),Y(4),X(8.8),Y(3.8));c.stroke();
+c.fillStyle=gold;R(0,1.55,8.6,.05);R(0,4.62,8.6,.05);c.restore();c.strokeStyle='rgba(170,200,255,.28)';c.lineWidth=.025*u;c.strokeRect(X(0),Y(4.9),8.6*u,3.65*u);
+c.textBaseline='alphabetic';c.font='italic 900 '+1.35*u+'px Inter,Arial,sans-serif';c.fillStyle=chrome(Y(4.3),Y(2.9));c.fillText('TURN',X(.6),Y(2.95));const tw=c.measureText('TURN').width;c.fillStyle='#F2B705';c.fillText('.',X(.6)+tw,Y(2.95));c.font='700 '+.24*u+'px Inter,Arial,sans-serif';c.fillStyle='#d9b45a';if('letterSpacing' in c)c.letterSpacing=.06*u+'px';c.fillText('TRUCK STOP \u00b7 SINCE 1947',X(.65),Y(4.38));if('letterSpacing' in c)c.letterSpacing='0px';
+// cab
+const cab=new Path2D();const P=(a,b)=>[X(a),Y(b)];cab.moveTo(...P(8.8,1.25));cab.lineTo(...P(8.8,4.1));cab.quadraticCurveTo(...P(8.8,4.58),...P(9.3,4.58));cab.lineTo(...P(12.3,4.58));cab.quadraticCurveTo(...P(12.85,4.58),...P(12.92,4));cab.lineTo(...P(13,1.25));cab.closePath();c.fillStyle=body;c.fill(cab);c.fillStyle=lin(c,0,Y(4.6),0,Y(3.3),[[0,'rgba(140,170,255,.25)'],[1,'rgba(140,170,255,0)']]);c.fill(cab);c.strokeStyle='rgba(170,200,255,.3)';c.lineWidth=.025*u;c.stroke(cab);
+c.save();c.clip(cab);c.fillStyle='rgba(255,255,255,.06)';c.beginPath();c.moveTo(X(9.6),Y(4.6));c.lineTo(X(10.5),Y(4.6));c.lineTo(X(9.4),Y(1.25));c.lineTo(X(8.5),Y(1.25));c.fill();c.fillStyle=gold;R(8.8,1.9,4.3,.07);c.restore();
+const gw=lin(c,0,Y(4.25),0,Y(2.85),[[0,'#2b3558'],[.45,'#0e1226'],[1,'#05060b']]);c.fillStyle=gw;c.beginPath();c.moveTo(...P(9.5,2.85));c.lineTo(...P(9.5,4.1));c.quadraticCurveTo(...P(9.5,4.28),...P(9.7,4.28));c.lineTo(...P(12.1,4.28));c.lineTo(...P(12.45,2.85));c.closePath();c.fill();c.fillStyle='rgba(180,200,255,.1)';c.beginPath();c.moveTo(...P(10,4.28));c.lineTo(...P(10.8,4.28));c.lineTo(...P(10,2.85));c.lineTo(...P(9.5,2.85));c.fill();
+c.strokeStyle='rgba(255,255,255,.07)';c.lineWidth=.025*u;c.beginPath();c.moveTo(...P(9.3,1.3));c.lineTo(...P(9.3,4.5));c.moveTo(...P(12.55,1.3));c.lineTo(...P(12.6,4.3));c.stroke();c.fillStyle=chrome(Y(2.75),Y(2.6));R(11.5,2.6,.5,.12);
+// visor + lamps, roof sign
+c.fillStyle='#08080a';R(12.1,4.5,1.0,.15);c.fillStyle=chrome(Y(4.62),Y(4.5));R(12.1,4.58,1.0,.04);c.fillStyle='#08080a';R(10.2,4.58,1.8,.46);c.fillStyle='#F2B705';c.font='italic 900 '+.34*u+'px Inter,Arial';c.fillText('TURN',X(10.55),Y(4.77));
+// bumper, headlight, mirror, stacks
+c.fillStyle=chrome(Y(1.9),Y(.95));c.beginPath();c.roundRect?c.roundRect(X(12.5),Y(1.9),.9*u,.95*u,.12*u):c.rect(X(12.5),Y(1.9),.9*u,.95*u);c.fill();c.fillStyle='#fff6df';c.fillRect(X(12.78),Y(2.65),.3*u,.65*u);c.fillStyle=chrome(Y(3.9),Y(3));R(13.0,3.0,.18,.85);c.fillStyle='#0b0b0e';R(13.03,3.05,.12,.75);c.strokeStyle='#c9ccd2';c.lineWidth=.04*u;c.beginPath();c.moveTo(...P(12.75,3.95));c.lineTo(...P(13.05,3.75));c.stroke();
+[[8.3,1.55],[8.55,1.85]].forEach(([a,h])=>{c.fillStyle=lin(c,X(a),0,X(a+.2),0,[[0,'#6d7078'],[.35,'#fff'],[1,'#33353a']]);R(a,4.5,.2,h);c.beginPath();c.ellipse(X(a+.1),Y(4.5+h),.1*u,.04*u,0,0,7);c.fillStyle='#d9dade';c.fill()});
+// wheels
+const ang=off/(.62*u);[2.2,3.55,11.4].forEach(a=>{const cx=X(a),cy=Y(.62);c.fillStyle='#020203';c.beginPath();c.arc(cx,cy,.78*u,Math.PI,0);c.fill();c.strokeStyle='#b9bcc4';c.lineWidth=.045*u;c.beginPath();c.arc(cx,cy,.78*u,Math.PI*1.04,Math.PI*1.96);c.stroke();c.fillStyle='#09090a';c.beginPath();c.arc(cx,cy,.62*u,0,7);c.fill();c.strokeStyle='#202126';c.lineWidth=.04*u;c.beginPath();c.arc(cx,cy,.52*u,0,7);c.stroke();
+const rg=c.createRadialGradient(cx-.1*u,cy-.1*u,0,cx,cy,.42*u);rg.addColorStop(0,'#fff');rg.addColorStop(.6,'#9a9da5');rg.addColorStop(1,'#4a4c52');c.fillStyle=rg;c.beginPath();c.arc(cx,cy,.42*u,0,7);c.fill();c.strokeStyle='#2c2d32';c.lineWidth=.07*u;for(let k=0;k<6;k++){const q=ang+k*Math.PI/3;c.beginPath();c.moveTo(cx+Math.cos(q)*.1*u,cy+Math.sin(q)*.1*u);c.lineTo(cx+Math.cos(q)*.37*u,cy+Math.sin(q)*.37*u);c.stroke()}
+c.fillStyle='#F2B705';c.beginPath();c.arc(cx,cy,.09*u,0,7);c.fill();c.strokeStyle='rgba(255,255,255,.07)';c.lineWidth=.05*u;c.beginPath();c.arc(cx,cy,.58*u,ang,ang+1.1);c.stroke()});
+// lights (additive)
+c.globalCompositeOperation='lighter';for(let i=0;i<20;i++){const k=.45+.55*Math.sin(t*7-i*.55)**2;glow(c,X(.35+i*.43),Y(5),u*.32,'255,185,50',k*.9);c.fillStyle='rgba(255,215,120,'+k+')';c.fillRect(X(.35+i*.43)-.04*u,Y(5)-.04*u,.08*u,.08*u)}
+for(let i=0;i<5;i++)glow(c,X(12.35+i*.15),Y(4.52),u*.3,'255,190,70',.8);for(let i=0;i<26;i++){const k=Math.max(0,Math.sin(t*6-i*.5));c.fillStyle='rgba(60,225,255,'+(.25+.7*k)+')';c.fillRect(X(.2+i*.5),Y(1.3),.34*u,.06*u)}
+glow(c,X(10.95),Y(4.8),u*1.5,'255,190,60',.3+.1*Math.sin(t*3));glow(c,X(-.1),Y(1.1),u*.5,'255,30,30',.9);c.globalCompositeOperation='source-over'}
+function draw(){const pt=W<H;x.fillStyle=lin(x,0,0,0,gy,[[0,'#04050b'],[.5,'#0b0e26'],[.8,'#241238'],[1,'#6b2442']]);x.fillRect(0,0,W,gy);
+x.fillStyle='#fff';ST.forEach(s=>{x.globalAlpha=.2+.55*Math.abs(Math.sin(t*s[3]+s[2]));x.fillRect(s[0],s[1],s[4],s[4])});x.globalAlpha=1;glow(x,W*.8,H*.16,u*5,'190,210,255',.35);x.fillStyle='#e9eeff';x.beginPath();x.arc(W*.8,H*.16,u*.5,0,7);x.fill();
+x.save();x.translate(W*.5,gy);x.scale(1,.3);glow(x,0,0,W*.65,'255,110,70',.4);x.restore();LC.forEach(([k,sp])=>{const o=mod(off*sp,k.width);x.drawImage(k,-o,gy-k.height);x.drawImage(k,k.width-o,gy-k.height)});
+x.fillStyle=lin(x,0,gy-u*.9,0,H,[[0,'#1d1e24'],[.12,'#121317'],[1,'#06060a']]);x.fillRect(0,gy-u*.9,W,H-gy+u*.9);x.fillStyle='rgba(255,255,255,.12)';x.fillRect(0,gy-u*.9,W,u*.03);
+x.fillStyle='#2d2f36';x.fillRect(0,gy-1.5*u,W,.16*u);x.fillStyle='rgba(255,255,255,.16)';x.fillRect(0,gy-1.5*u,W,.03*u);x.fillStyle='#1d1e24';for(let i=-1;i<W/(u*1.8)+2;i++)x.fillRect(mod(i*u*1.8-off*.8,W+u*3.6)-u*1.8,gy-1.5*u,.14*u,.65*u);
+const lamps=[];for(let i=0;i<4;i++){const lx=mod(i*u*11-off*.6,W+u*11)-u*3;lamps.push(lx);x.fillStyle='#17181d';x.fillRect(lx-.06*u,gy-6.5*u,.12*u,5.6*u);x.fillRect(lx-.06*u,gy-6.5*u,.95*u,.1*u);x.globalCompositeOperation='lighter';glow(x,lx+.85*u,gy-6.35*u,u*2.2,'255,200,120',.32);x.globalCompositeOperation='source-over';x.fillStyle='#fff4d6';x.fillRect(lx+.55*u,gy-6.42*u,.55*u,.09*u)}
+const e=ease(t/2.6),tl=(W-15*u)/2-(1-e)*W*.62,bob=Math.sin(t*17)*u*.012*e;
+x.save();x.translate(tl+7.4*u,gy+.2*u);x.scale(1,.1);x.globalCompositeOperation='lighter';glow(x,0,0,u*9,'0,215,255',.55*(.75+.25*Math.sin(t*3)));x.restore();x.globalCompositeOperation='source-over';
+drawTruck();x.save();x.translate(0,2*gy);x.scale(1,-1);x.globalAlpha=.2;x.drawImage(tc,tl,gy-gl+bob);x.restore();x.fillStyle=lin(x,0,gy,0,gy+u*3.6,[[0,'rgba(8,8,11,.2)'],[1,'rgba(8,8,11,.97)']]);x.fillRect(0,gy,W,u*3.6);
+x.globalCompositeOperation='lighter';lamps.forEach(lx=>{x.fillStyle=lin(x,0,gy,0,gy+u*4.5,[[0,'rgba(255,190,100,.28)'],[1,'rgba(255,190,100,0)']]);x.fillRect(lx+.5*u,gy,.8*u,u*4.5)});x.globalCompositeOperation='source-over';
+x.fillStyle='rgba(235,235,242,.55)';for(let i=0;i<W/(u*6)+2;i++)x.fillRect(mod(i*u*6-off,W+u*6)-u*6,gy+1.6*u,u*2.4,.13*u);
+x.drawImage(tc,tl,gy-gl+bob);
+const ap=ease((t-.8)/1.3),bx=tl+13.9*u,by=gy-2.3*u+bob;x.globalCompositeOperation='lighter';x.fillStyle=lin(x,bx,0,W*1.1,0,[[0,'rgba(255,240,205,'+.5*ap+')'],[1,'rgba(255,240,205,0)']]);x.beginPath();x.moveTo(bx,by-.15*u);x.lineTo(W*1.3,by-3.4*u);x.lineTo(W*1.3,by+2.2*u);x.lineTo(bx,by+.2*u);x.fill();glow(x,bx,by,u*1.5,'255,240,210',.75*ap);x.save();x.translate(bx+u*4,gy+.3*u);x.scale(1,.16);glow(x,0,0,u*6.5,'255,235,190',.4*ap);x.restore();x.globalCompositeOperation='source-over';
+const dtt=Math.min((performance.now()-last)/1000+.016,.05);sacc+=dtt;while(sacc>.07){sacc-=.07;[8.4,8.65].forEach(a=>smoke.push({x:tl+(a+.6)*u,y:gy-(6.1+(a>8.5?.3:0))*u,r:.12*u,l:0}))}
+smoke=smoke.filter(s=>s.l<1);smoke.forEach(s=>{s.l+=dtt*.5;s.x-=u*5*dtt*(.5+.5*Math.min(1,t/2));s.y-=u*1.2*dtt;s.r+=u*.9*dtt;glow(x,s.x,s.y,s.r,'150,155,170',.2*(1-s.l))});
+x.fillStyle='#fff';SK.forEach(s=>{x.globalAlpha=.06*s[2];x.fillRect(mod(s[0]*W-off*(1.6+s[2]),W+s[3])-s[3],gy+s[1]*(H-gy),s[3],1.3*D)});x.globalAlpha=1;
+for(let i=0;i<2;i++){const px=mod(i*u*24-off*2.2+u*5,W+u*30)-u*8;x.fillStyle=lin(x,px,0,px+u*1.6,0,[[0,'rgba(2,2,4,0)'],[.35,'rgba(2,2,4,.55)'],[.65,'rgba(2,2,4,.55)'],[1,'rgba(2,2,4,0)']]);x.fillRect(px,gy-9*u,u*1.6,H)}
+x.globalCompositeOperation='lighter';BK.forEach(b=>{glow(x,mod(b[0]*W-off*.04,W),b[1]*H+Math.sin(t*.5+b[4])*u*.3,b[2],b[3],.08)});x.globalCompositeOperation='source-over';
+const vg=x.createRadialGradient(W/2,H*.55,H*.3,W/2,H*.55,Math.max(W,H)*.75);vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(0,0,0,.72)');x.fillStyle=vg;x.fillRect(0,0,W,H);
+x.save();x.globalAlpha=.06;x.translate(-(Math.random()*128|0),-(Math.random()*128|0));x.fillStyle=x.createPattern(nz,'repeat');x.fillRect(0,0,W+128,H+128);x.restore()}
+sz();addEventListener('resize',sz);(function f(now){raf=requestAnimationFrame(f);if(window.__lite&&now-(f.p||0)<32)return;f.p=now;const dt=Math.min((now-last)/1000,.05);last=now;t+=dt;off+=u*12*Math.min(1,.3+t*.45)*dt;draw()})(performance.now())}
+scene();
+
+})();
+</script><div id="protobadge" style="position:fixed;left:12px;bottom:12px;z-index:120;background:#F2B705;color:#111;font:800 11px/1 Inter,sans-serif;padding:6px 10px;border-radius:99px;pointer-events:none;letter-spacing:.04em">PROTOTYPE · NOT OFFICIAL</div></body></html>
